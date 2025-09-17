@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://lixingmao.github.io',
+  site: 'https://aireels-dev.github.io',
   base: '/aireels-web',
   integrations: [
     tailwind(),
