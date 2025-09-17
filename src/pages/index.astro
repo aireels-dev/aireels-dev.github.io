@@ -1,16 +1,241 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import MetricCard from '../components/MetricCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import { siteConfig } from '../config';
 
+const demoCode = `// AI API 调用示例
+const response = await fetch('/api/generate', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_API_KEY'
+  },
+  body: JSON.stringify({
+    prompt: '生成营销文案',
+    type: 'social',
+    industry: '设计服务'
+  })
+});
+
+const result = await response.json();
+console.log(result.content);`;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="首页">
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden grid-pattern">
+    <!-- Background Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-function-blue/5 via-transparent to-success-green/5"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Terminal Welcome -->
+      <div class="terminal rounded-lg mb-8 max-w-2xl mx-auto animate-slide-up">
+        <div class="terminal-header px-4 py-2 flex items-center justify-between">
+          <div class="flex space-x-2">
+            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          <span class="text-gray-400 text-sm font-mono">terminal</span>
+        </div>
+        <div class="p-6">
+          <div class="font-mono text-left text-sm">
+            <div class="text-success-green">$ welcome</div>
+            <div class="text-gray-300 mt-2">欢迎来到郑州灵映科技</div>
+            <div class="text-gray-300">让每个创业者都能用上专业的AI工具</div>
+            <div class="text-function-blue mt-2 animate-bounce-gentle">_</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+        <span class="bg-gradient-to-r from-function-blue to-success-green bg-clip-text text-transparent">
+          AI驱动的
+        </span>
+        <br>
+        <span class="text-tech-black dark:text-white">数字化工具</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto animate-fade-in">
+        以最低的成本获得最大的营销效果，专为自由职业者和初创团队设计
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-slide-up">
+        <a href="/demo" class="btn-primary text-lg px-8 py-4">
+          立即体验
+          <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </a>
+        <a href="/docs" class="btn-secondary text-lg px-8 py-4">
+          查看文档
+        </a>
+      </div>
+
+      <!-- Metrics -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-in">
+        {siteConfig.metrics.map((metric) => (
+          <MetricCard
+            title={metric.title}
+            value={metric.value}
+            trend={metric.trend}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values Section -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-tech-black dark:text-white mb-4">
+          三大核心优势
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          专注为预算有限的创业者提供高性价比的AI工具和服务
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+          <div class="w-16 h-16 bg-function-blue/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">成本友好</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            针对预算有限的创业者设计，提供高性价比的AI工具和服务
+          </p>
+        </div>
+
+        <div class="text-center p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+          <div class="w-16 h-16 bg-success-green/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-success-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">简单易用</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            无需技术背景，普通人也能快速上手，10分钟学会基本操作
+          </p>
+        </div>
+
+        <div class="text-center p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+          <div class="w-16 h-16 bg-purple-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">效果实用</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            专注解决真实痛点：内容创作难、客户获取贵、运营效率低
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Capabilities Demo -->
+  <section class="py-20 bg-gray-50 dark:bg-tech-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-tech-black dark:text-white mb-4">
+          AI能力展示
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          一行代码调用强大的AI功能
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Code Demo -->
+        <div>
+          <CodeBlock
+            code={demoCode}
+            language="javascript"
+            title="AI API 调用演示"
+          />
+        </div>
+
+        <!-- Features List -->
+        <div class="space-y-6">
+          {siteConfig.features.map((feature) => (
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-function-blue/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-6 h-6 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">
+                  {feature.title}
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-3">
+                  {feature.description}
+                </p>
+                <ul class="space-y-1 text-sm text-gray-500 dark:text-gray-400">
+                  {feature.details.map((detail) => (
+                    <li class="flex items-start">
+                      <span class="w-1.5 h-1.5 bg-function-blue rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-tech-black dark:text-white mb-4">
+          用户反馈
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          听听我们用户的真实声音
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {siteConfig.testimonials.map((testimonial) => (
+          <TestimonialCard
+            quote={testimonial.quote}
+            author={testimonial.author}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 bg-gradient-to-r from-function-blue to-success-green">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold text-white mb-4">
+        准备开始您的AI之旅了吗？
+      </h2>
+      <p class="text-xl text-blue-100 mb-8">
+        立即免费体验，感受AI工具带来的效率提升
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/demo" class="bg-white text-function-blue hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-colors text-lg">
+          免费试用 7 天
+        </a>
+        <a href="/contact" class="border-2 border-white text-white hover:bg-white hover:text-function-blue font-bold py-4 px-8 rounded-lg transition-colors text-lg">
+          联系咨询
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

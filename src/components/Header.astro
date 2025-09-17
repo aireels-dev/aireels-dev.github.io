@@ -1,0 +1,147 @@
+---
+import { siteConfig } from '../config';
+---
+
+<header class="sticky top-0 z-50 bg-minimal-white/80 backdrop-blur-sm border-b border-gray-200 dark:bg-tech-black/80 dark:border-gray-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-2 group">
+          <img
+            src={siteConfig.logo}
+            alt={siteConfig.title}
+            class="h-8 w-auto transition-transform group-hover:scale-105"
+          >
+          <span class="text-xl font-bold text-tech-black dark:text-white hidden sm:block">
+            {siteConfig.title}
+          </span>
+          <span class="text-xs bg-function-blue text-white px-2 py-1 rounded hidden lg:block">
+            v1.0
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        {siteConfig.nav.map((item) => (
+          <a
+            href={item.href}
+            class="text-gray-700 hover:text-function-blue dark:text-gray-300 dark:hover:text-function-blue transition-colors font-medium"
+          >
+            {item.title}
+          </a>
+        ))}
+
+        <!-- GitHub Star Button -->
+        <a
+          href={siteConfig.github.url}
+          target="_blank"
+          class="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        >
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" clip-rule="evenodd"></path>
+          </svg>
+          {siteConfig.github.stars}
+        </a>
+
+        <!-- Dark Mode Toggle -->
+        <button
+          id="theme-toggle"
+          class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+        <button
+          id="mobile-menu-button"
+          class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+        {siteConfig.nav.map((item) => (
+          <a
+            href={item.href}
+            class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-function-blue dark:text-gray-300 dark:hover:text-function-blue"
+          >
+            {item.title}
+          </a>
+        ))}
+        <a
+          href={siteConfig.github.url}
+          target="_blank"
+          class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-function-blue dark:text-gray-300 dark:hover:text-function-blue"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Theme toggle functionality
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+  const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+  // Change the icons inside the button based on previous settings
+  if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    themeToggleLightIcon?.classList.remove('hidden');
+    document.documentElement.classList.add('dark');
+  } else {
+    themeToggleDarkIcon?.classList.remove('hidden');
+    document.documentElement.classList.remove('dark');
+  }
+
+  themeToggleBtn?.addEventListener('click', function() {
+    // toggle icons inside button
+    themeToggleDarkIcon?.classList.toggle('hidden');
+    themeToggleLightIcon?.classList.toggle('hidden');
+
+    // if set via local storage previously
+    if (localStorage.getItem('color-theme')) {
+      if (localStorage.getItem('color-theme') === 'light') {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      }
+    } else {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', function() {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  value: string;
+  trend: 'up' | 'down' | 'stable';
+  icon?: string;
+}
+
+const { title, value, trend, icon } = Astro.props;
+
+const trendColors = {
+  up: 'text-success-green',
+  down: 'text-red-500',
+  stable: 'text-yellow-500'
+};
+
+const trendIcons = {
+  up: 'M5 10l7-7m0 0l7 7m-7-7v18',
+  down: 'M19 14l-7 7m0 0l-7-7m7 7V3',
+  stable: 'M5 12h14'
+};
+---
+
+<div class="metric-card bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
+  <div class="flex items-center justify-between">
+    <div>
+      <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
+        {title}
+      </p>
+      <p class="text-2xl font-bold text-tech-black dark:text-white">
+        {value}
+      </p>
+    </div>
+
+    {icon && (
+      <div class="p-3 bg-function-blue/10 rounded-lg">
+        <svg class="w-6 h-6 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icon}></path>
+        </svg>
+      </div>
+    )}
+  </div>
+
+  <div class={`flex items-center mt-4 text-sm ${trendColors[trend]}`}>
+    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={trendIcons[trend]}></path>
+    </svg>
+    <span class="font-medium">
+      {trend === 'up' ? '持续优化' : trend === 'down' ? '需要关注' : '保持稳定'}
+    </span>
+  </div>
+</div>

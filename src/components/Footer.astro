@@ -1,0 +1,103 @@
+---
+import { siteConfig } from '../config';
+---
+
+<footer class="bg-tech-black text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center space-x-2 mb-4">
+          <img
+            src={siteConfig.logo}
+            alt={siteConfig.title}
+            class="h-8 w-auto filter brightness-0 invert"
+          >
+          <span class="text-xl font-bold">{siteConfig.title}</span>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          {siteConfig.description}
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+        <ul class="space-y-2">
+          {siteConfig.nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                {item.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">服务支持</h3>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="/docs" class="hover:text-white transition-colors">技术文档</a></li>
+          <li><a href="/docs#faq" class="hover:text-white transition-colors">常见问题</a></li>
+          <li><a href="/contact" class="hover:text-white transition-colors">技术支持</a></li>
+          <li><a href="/contact" class="hover:text-white transition-colors">在线咨询</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">联系我们</h3>
+        <div class="space-y-3 text-sm text-gray-400">
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span>contact@lytech.ai</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span>郑州市高新区</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm5.568 8.16c-.169 1.58-.896 8.922-1.25 11.799-.15 1.21-.447 1.615-.732 1.656-.621.067-1.092-.4-1.692-.784-2.22-1.424-3.479-2.283-5.679-3.748-1.425-.949-.501-1.469.31-2.322.212-.223 3.925-3.593 3.994-3.901.009-.039.016-.184-.07-.26-.085-.075-.21-.05-.3-.029-.128.029-2.137 1.357-6.037 3.986-.571.394-1.088.585-1.546.572-.509-.016-1.488-.287-2.214-.523-.89-.289-1.599-.442-1.538-.931.032-.255.38-.515 1.047-.781 4.1-1.781 6.836-2.955 8.208-3.522 3.897-1.61 4.703-1.892 5.23-1.901.116-.002.374.027.54.165.14.116.179.272.196.38z"/>
+            </svg>
+            <span>微信客服</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="border-t border-gray-800 mt-8 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div class="text-sm text-gray-400">
+          © {new Date().getFullYear()} {siteConfig.title}. 保留所有权利.
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="flex items-center space-x-4 text-xs text-gray-500">
+          <span>Built with</span>
+          <div class="flex items-center space-x-2">
+            <span class="px-2 py-1 bg-gray-800 rounded">Astro</span>
+            <span class="px-2 py-1 bg-gray-800 rounded">Tailwind</span>
+            <span class="px-2 py-1 bg-gray-800 rounded">TypeScript</span>
+          </div>
+        </div>
+
+        <!-- Deploy Status -->
+        <div class="flex items-center space-x-2 text-xs">
+          <div class="w-2 h-2 bg-success-green rounded-full animate-pulse"></div>
+          <span class="text-gray-400">All systems operational</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

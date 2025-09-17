@@ -1,0 +1,396 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+
+const codeExamples = {
+  basic: `// 基础文案生成
+const generateContent = async () => {
+  const response = await fetch('/api/generate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      prompt: '为我的设计工作室写一篇朋友圈推广',
+      industry: 'design',
+      tone: 'professional'
+    })
+  });
+
+  const result = await response.json();
+  return result.content;
+};`,
+
+  advanced: `// 高级功能 - 批量生成
+const batchGenerate = async (prompts) => {
+  const promises = prompts.map(prompt =>
+    fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(prompt)
+    })
+  );
+
+  const responses = await Promise.all(promises);
+  return Promise.all(responses.map(r => r.json()));
+};`,
+
+  webhook: `// Webhook 集成
+app.post('/webhook/ai-complete', (req, res) => {
+  const { taskId, status, result } = req.body;
+
+  if (status === 'completed') {
+    // 处理生成完成的内容
+    saveGeneratedContent(taskId, result);
+
+    // 通知用户
+    notifyUser(taskId, result);
+  }
+
+  res.status(200).send('OK');
+});`
+};
+---
+
+<Layout title="在线演示">
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-br from-function-blue/10 via-transparent to-success-green/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold text-tech-black dark:text-white mb-6">
+        在线演示
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        实时体验AI内容生成功能，感受智能化营销工具的强大能力
+      </p>
+    </div>
+  </section>
+
+  <!-- Interactive Demo -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Demo Panel -->
+        <div class="space-y-6">
+          <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+            <h3 class="text-xl font-bold text-tech-black dark:text-white mb-4">
+              AI内容生成器
+            </h3>
+
+            <!-- Input Form -->
+            <div class="space-y-4" x-data="{ prompt: '', industry: 'design', type: 'social', generating: false, result: '' }">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  内容描述
+                </label>
+                <textarea
+                  x-model="prompt"
+                  placeholder="请描述您想要生成的内容，比如：为我的烘焙工作室写一篇微信朋友圈推广"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-function-blue focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    行业领域
+                  </label>
+                  <select
+                    x-model="industry"
+                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-function-blue focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  >
+                    <option value="design">设计服务</option>
+                    <option value="food">餐饮美食</option>
+                    <option value="fitness">健身教育</option>
+                    <option value="consulting">咨询服务</option>
+                    <option value="retail">零售电商</option>
+                    <option value="other">其他</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    内容类型
+                  </label>
+                  <select
+                    x-model="type"
+                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-function-blue focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  >
+                    <option value="social">朋友圈/社交媒体</option>
+                    <option value="email">邮件营销</option>
+                    <option value="ad">广告文案</option>
+                    <option value="blog">博客文章</option>
+                    <option value="video">视频脚本</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Generate Button -->
+              <button
+                @click="generating = true; setTimeout(() => { generating = false; result = generateDemoContent(prompt, industry, type); }, 2000)"
+                :disabled="!prompt || generating"
+                class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span x-show="!generating">生成内容</span>
+                <span x-show="generating" class="flex items-center justify-center">
+                  <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  生成中...
+                </span>
+              </button>
+
+              <!-- Result -->
+              <div x-show="result" class="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <h4 class="font-medium text-tech-black dark:text-white mb-2">生成结果：</h4>
+                <p x-text="result" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
+
+                <div class="flex space-x-2 mt-4">
+                  <button
+                    @click="navigator.clipboard.writeText(result)"
+                    class="px-3 py-1 text-sm bg-function-blue text-white rounded hover:bg-blue-700 transition-colors"
+                  >
+                    复制
+                  </button>
+                  <button
+                    @click="result = generateDemoContent(prompt, industry, type)"
+                    class="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+                  >
+                    重新生成
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Performance Metrics -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+            <h3 class="text-lg font-bold text-tech-black dark:text-white mb-4">
+              实时性能指标
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div class="text-2xl font-bold text-function-blue">< 200ms</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">API响应时间</div>
+              </div>
+              <div class="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div class="text-2xl font-bold text-success-green">95.8%</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">内容准确率</div>
+              </div>
+              <div class="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div class="text-2xl font-bold text-purple-500">1000+</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">并发处理/秒</div>
+              </div>
+              <div class="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div class="text-2xl font-bold text-yellow-500">99.9%</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">服务可用性</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Examples -->
+        <div class="space-y-6">
+          <div x-data="{ activeTab: 'basic' }">
+            <!-- Tab Navigation -->
+            <div class="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg mb-4">
+              <button
+                @click="activeTab = 'basic'"
+                :class="activeTab === 'basic' ? 'bg-white dark:bg-gray-700 text-function-blue' : 'text-gray-600 dark:text-gray-400'"
+                class="flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors"
+              >
+                基础调用
+              </button>
+              <button
+                @click="activeTab = 'advanced'"
+                :class="activeTab === 'advanced' ? 'bg-white dark:bg-gray-700 text-function-blue' : 'text-gray-600 dark:text-gray-400'"
+                class="flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors"
+              >
+                高级功能
+              </button>
+              <button
+                @click="activeTab = 'webhook'"
+                :class="activeTab === 'webhook' ? 'bg-white dark:bg-gray-700 text-function-blue' : 'text-gray-600 dark:text-gray-400'"
+                class="flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors"
+              >
+                Webhook
+              </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div x-show="activeTab === 'basic'">
+              <CodeBlock
+                code={codeExamples.basic}
+                language="javascript"
+                title="基础API调用"
+              />
+            </div>
+
+            <div x-show="activeTab === 'advanced'">
+              <CodeBlock
+                code={codeExamples.advanced}
+                language="javascript"
+                title="批量处理示例"
+              />
+            </div>
+
+            <div x-show="activeTab === 'webhook'">
+              <CodeBlock
+                code={codeExamples.webhook}
+                language="javascript"
+                title="Webhook回调处理"
+              />
+            </div>
+          </div>
+
+          <!-- API Status -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+            <h3 class="text-lg font-bold text-tech-black dark:text-white mb-4">
+              API服务状态
+            </h3>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300">内容生成服务</span>
+                <div class="flex items-center space-x-2">
+                  <div class="w-2 h-2 bg-success-green rounded-full animate-pulse"></div>
+                  <span class="text-sm text-success-green">正常</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300">内容分析服务</span>
+                <div class="flex items-center space-x-2">
+                  <div class="w-2 h-2 bg-success-green rounded-full animate-pulse"></div>
+                  <span class="text-sm text-success-green">正常</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300">优化建议服务</span>
+                <div class="flex items-center space-x-2">
+                  <div class="w-2 h-2 bg-success-green rounded-full animate-pulse"></div>
+                  <span class="text-sm text-success-green">正常</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Demo -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-tech-black dark:text-white mb-4">
+          功能演示
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          体验我们的核心AI功能
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Content Generation -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+          <div class="w-12 h-12 bg-function-blue/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">
+            内容生成
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            智能生成营销文案、社交媒体内容和邮件模板
+          </p>
+          <button class="w-full px-4 py-2 bg-function-blue text-white rounded-lg hover:bg-blue-700 transition-colors">
+            立即体验
+          </button>
+        </div>
+
+        <!-- Content Analysis -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+          <div class="w-12 h-12 bg-success-green/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-success-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">
+            内容分析
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            分析内容表现，提供数据驱动的优化建议
+          </p>
+          <button class="w-full px-4 py-2 bg-success-green text-white rounded-lg hover:bg-green-700 transition-colors">
+            开始分析
+          </button>
+        </div>
+
+        <!-- Marketing Optimization -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+          <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">
+            营销优化
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            基于行业数据提供个性化的营销策略建议
+          </p>
+          <button class="w-full px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-700 transition-colors">
+            获取建议
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-function-blue to-success-green">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold text-white mb-4">
+        体验完整功能
+      </h2>
+      <p class="text-xl text-blue-100 mb-8">
+        注册免费账户，解锁所有AI功能
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="bg-white text-function-blue hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-colors text-lg">
+          免费注册
+        </a>
+        <a href="/docs" class="border-2 border-white text-white hover:bg-white hover:text-function-blue font-bold py-4 px-8 rounded-lg transition-colors text-lg">
+          查看文档
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Demo content generation function
+  function generateDemoContent(prompt, industry, type) {
+    const templates = {
+      design: {
+        social: "🎨 专业设计师为您打造独特视觉体验！\n\n✨ 品牌设计 | 平面设计 | UI/UX设计\n💡 创意无限，品质保证\n📞 联系我们，让您的品牌脱颖而出\n\n#设计师 #品牌设计 #创意",
+        email: "您好！\n\n我是一名专业设计师，专注于为客户提供高质量的视觉设计服务。\n\n我的服务包括：\n• 品牌logo设计\n• 宣传物料设计\n• 网站UI设计\n\n期待与您合作！",
+        ad: "🔥 专业设计师 | 10年经验 | 品质保证\n\n让您的品牌在竞争中脱颖而出！\n\n立即咨询，免费获取设计方案！"
+      },
+      food: {
+        social: "🍰 新鲜出炉的美味甜点！\n\n📍 手工制作，用心烘焙\n🎂 生日蛋糕 | 马卡龙 | 司康饼\n💖 每一口都是幸福的味道\n\n欢迎预订 ~\n\n#烘焙 #甜品 #手工制作",
+        email: "亲爱的朋友，\n\n感谢您对我们烘焙工作室的关注！\n\n我们专注于手工制作各类精美甜点，使用优质食材，确保每一份甜品都新鲜美味。\n\n欢迎随时联系我们预订！",
+        ad: "🍰 手工烘焙 | 新鲜制作 | 口感绝佳\n\n让每一个特殊时刻都更加甜蜜！\n\n立即下单，享受美味甜品！"
+      }
+    };
+
+    const industryKey = industry === 'other' ? 'design' : industry;
+    const template = templates[industryKey] && templates[industryKey][type]
+      ? templates[industryKey][type]
+      : templates.design.social;
+
+    return template;
+  }
+
+  // Make function globally available
+  window.generateDemoContent = generateDemoContent;
+</script>
