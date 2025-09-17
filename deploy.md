@@ -8,7 +8,7 @@
 1. 访问 https://github.com/new
 2. 设置仓库信息：
    - **Repository name**: `aireels-web`
-   - **Owner**: `aireels-dev` (需要先创建此组织)
+   - **Owner**: `lixingmao`
    - **Description**: `AIReels官网 - 基于Astro.js的极简技术风格官网`
    - **Visibility**: Public
    - **不要勾选**: "Add a README file", "Add .gitignore", "Choose a license"
@@ -27,7 +27,7 @@ git push -u origin main
 ### 3. 配置 GitHub Pages
 
 1. 进入仓库设置页面：
-   - 访问 `https://github.com/aireels-dev/aireels-web/settings`
+   - 访问 `https://github.com/lixingmao/aireels-web/settings`
 
 2. 找到 "Pages" 选项：
    - 在左侧菜单中点击 "Pages"
@@ -45,7 +45,7 @@ git push -u origin main
 2. 可以在 `Actions` 标签页查看部署进度
 3. 部署完成后，网站将在以下地址可用：
    ```
-   https://aireels-dev.github.io/aireels-web
+   https://lixingmao.github.io/aireels-web
    ```
 
 ## 本地开发命令

@@ -11,9 +11,9 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # 仓库信息
-REPO_URL="https://github.com/aireels-dev/aireels-web"
-SITE_URL="https://aireels-dev.github.io/aireels-web"
-API_BASE="https://api.github.com/repos/aireels-dev/aireels-web"
+REPO_URL="https://github.com/lixingmao/aireels-web"
+SITE_URL="https://lixingmao.github.io/aireels-web"
+API_BASE="https://api.github.com/repos/lixingmao/aireels-web"
 
 echo -e "${BLUE}正在验证部署状态...${NC}\n"
 
