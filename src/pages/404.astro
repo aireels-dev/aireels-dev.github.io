@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config';
+---
+
+<Layout title="页面建设中">
+  <!-- 404 Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden grid-pattern">
+    <!-- Background Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-function-blue/5 via-transparent to-success-green/5"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Terminal Style 404 -->
+      <div class="terminal rounded-lg mb-8 max-w-2xl mx-auto animate-slide-up">
+        <div class="terminal-header px-4 py-2 flex items-center justify-between">
+          <div class="flex space-x-2">
+            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          <span class="text-gray-400 text-sm font-mono">404-terminal</span>
+        </div>
+        <div class="p-6">
+          <div class="font-mono text-left text-sm">
+            <div class="text-error-red">$ page --status</div>
+            <div class="text-gray-300 mt-2">ERROR: Page under construction</div>
+            <div class="text-yellow-400 mt-1">STATUS: Building amazing features...</div>
+            <div class="text-success-green mt-1">PROGRESS: 85% complete</div>
+            <div class="text-function-blue mt-3 animate-bounce-gentle">_</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 404 Icon -->
+      <div class="mb-8 animate-fade-in">
+        <div class="w-32 h-32 mx-auto mb-6 bg-function-blue/10 rounded-full flex items-center justify-center">
+          <svg class="w-16 h-16 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Main Heading -->
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+        <span class="bg-gradient-to-r from-function-blue to-success-green bg-clip-text text-transparent">
+          页面建设中
+        </span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto animate-fade-in">
+        我们正在努力为您打造更好的体验，敬请期待！
+      </p>
+
+      <!-- Construction Details -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto animate-slide-up">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-function-blue/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-tech-black dark:text-white mb-2">功能优化</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            正在完善AI工具功能，提升用户体验
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-success-green/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-success-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-tech-black dark:text-white mb-2">测试完善</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            严格测试确保每个功能都能稳定运行
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-tech-black dark:text-white mb-2">即将上线</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            预计很快就能与大家见面
+          </p>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8 animate-slide-up">
+        <a href="./" class="btn-primary text-lg px-8 py-4">
+          返回首页
+          <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+        </a>
+        <a href="./contact/" class="btn-secondary text-lg px-8 py-4">
+          联系我们
+        </a>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="max-w-md mx-auto animate-fade-in">
+        <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400 mb-2">
+          <span>建设进度</span>
+          <span>85%</span>
+        </div>
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+          <div class="bg-gradient-to-r from-function-blue to-success-green h-3 rounded-full" style="width: 85%"></div>
+        </div>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
+          感谢您的耐心等待
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Additional animations for 404 page */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+</style>

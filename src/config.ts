@@ -3,14 +3,14 @@ export const siteConfig = {
   description: "让每个创业者都能用上专业的AI工具",
   url: "https://aireels-dev.github.io/aireels-web",
   author: "郑州灵映科技",
-  logo: "/logo.png",
+  logo: "/aireels-web/logo.png",
 
   nav: [
-    { title: "产品", href: "/products" },
-    { title: "Demo", href: "/demo" },
-    { title: "文档", href: "/docs" },
-    { title: "关于", href: "/about" },
-    { title: "联系", href: "/contact" },
+    { title: "产品", href: "./products/" },
+    { title: "Demo", href: "./demo/" },
+    { title: "文档", href: "./docs/" },
+    { title: "关于", href: "./about/" },
+    { title: "联系", href: "./contact/" },
   ],
 
   features: [
