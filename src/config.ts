@@ -6,11 +6,11 @@ export const siteConfig = {
   logo: "/aireels-web/logo.png",
 
   nav: [
-    { title: "产品", href: "./products/" },
-    { title: "Demo", href: "./demo/" },
-    { title: "文档", href: "./docs/" },
-    { title: "关于", href: "./about/" },
-    { title: "联系", href: "./contact/" },
+    { title: "产品", href: "/aireels-web/products/" },
+    { title: "Demo", href: "/aireels-web/demo/" },
+    { title: "文档", href: "/aireels-web/docs/" },
+    { title: "关于", href: "/aireels-web/about/" },
+    { title: "联系", href: "/aireels-web/contact/" },
   ],
 
   features: [
