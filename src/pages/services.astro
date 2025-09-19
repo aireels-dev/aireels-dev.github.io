@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../config';
+---
+
+<Layout title="服务介绍">
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-br from-function-blue/10 via-transparent to-success-green/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold text-tech-black dark:text-white mb-6">
+        服务介绍
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        专注为中小企业提供AI技术集成与智能化解决方案
+      </p>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {siteConfig.features.map((feature, index) => (
+        <div class={`mb-20 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Feature Info -->
+            <div class="space-y-6">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-function-blue/10 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {feature.icon === 'tool' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    )}
+                    {feature.icon === 'edit-3' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    )}
+                    {feature.icon === 'trending-up' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    )}
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-function-blue bg-function-blue/10 px-3 py-1 rounded-full">
+                  核心模块 {index + 1}
+                </span>
+              </div>
+
+              <h2 class="text-3xl font-bold text-tech-black dark:text-white">
+                {feature.title}
+              </h2>
+
+              <p class="text-lg text-gray-600 dark:text-gray-400">
+                {feature.description}
+              </p>
+
+              <div class="space-y-4">
+                {feature.details.map((detail) => (
+                  <div class="flex items-start space-x-3">
+                    <svg class="w-5 h-5 text-success-green mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-700 dark:text-gray-300">{detail}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Technical Advantages -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-tech-black dark:text-white mb-4">
+          服务特点
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          专业、可靠、贴心的AI技术服务
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div class="w-16 h-16 bg-function-blue/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-tech-black dark:text-white mb-2">快速响应</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            工作日快速响应客户需求，及时提供技术支持
+          </p>
+        </div>
+
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div class="w-16 h-16 bg-success-green/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-success-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-tech-black dark:text-white mb-2">专业可靠</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            基于丰富的技术经验，提供专业可靠的解决方案
+          </p>
+        </div>
+
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div class="w-16 h-16 bg-purple-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-tech-black dark:text-white mb-2">安全保障</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            重视数据安全和隐私保护，遵循行业标准
+          </p>
+        </div>
+
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div class="w-16 h-16 bg-yellow-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-tech-black dark:text-white mb-2">贴心服务</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            提供个性化服务方案，确保客户满意度
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-20 bg-gradient-to-r from-function-blue to-success-green">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold text-white mb-4">
+        了解更多服务详情
+      </h2>
+      <p class="text-xl text-blue-100 mb-8">
+        欢迎联系我们，获取专业的AI技术咨询服务
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/about/" class="bg-white text-function-blue hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-colors text-lg">
+          了解我们
+        </a>
+        <a href="mailto:dev@aireels.top" class="border-2 border-white text-white hover:bg-white hover:text-function-blue font-bold py-4 px-8 rounded-lg transition-colors text-lg">
+          联系咨询
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

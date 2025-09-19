@@ -6,11 +6,8 @@ export const siteConfig = {
   logo: "/logo.png",
 
   nav: [
-    { title: "智能服务", href: "/products/" },
-    { title: "技术实力", href: "/demo/" },
-    { title: "技术文档", href: "/docs/" },
+    { title: "服务介绍", href: "/services/" },
     { title: "关于我们", href: "/about/" },
-    { title: "联系我们", href: "/contact/" },
   ],
 
   features: [
