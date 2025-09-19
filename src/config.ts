@@ -6,6 +6,7 @@ export const siteConfig = {
   logo: "/logo.png",
 
   nav: [
+    { title: "首页", href: "/" },
     { title: "服务介绍", href: "/services/" },
     { title: "关于我们", href: "/about/" },
   ],

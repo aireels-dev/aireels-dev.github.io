@@ -1,26 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CodeBlock from '../components/CodeBlock.astro';
 import MetricCard from '../components/MetricCard.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
 import { siteConfig } from '../config';
-
-const demoCode = `// AI API 调用示例
-const response = await fetch('/api/generate', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer YOUR_API_KEY'
-  },
-  body: JSON.stringify({
-    prompt: '生成营销文案',
-    type: 'social',
-    industry: '设计服务'
-  })
-});
-
-const result = await response.json();
-console.log(result.content);`;
 ---
 
 <Layout title="首页">
@@ -53,39 +35,48 @@ console.log(result.content);`;
       <!-- Main Heading -->
       <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
         <span class="bg-gradient-to-r from-function-blue to-success-green bg-clip-text text-transparent">
-          AI驱动的
+          郑州灵映科技
         </span>
         <br>
-        <span class="text-tech-black dark:text-white">数字化工具</span>
+        <span class="text-tech-black dark:text-white">有限公司</span>
       </h1>
 
       <!-- Subtitle -->
       <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto animate-fade-in">
-        以最低的成本获得最大的营销效果，专为自由职业者和初创团队设计
+        专注为中小企业和个人创业者提供AI技术集成与智能化解决方案
       </p>
 
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-slide-up">
-        <a href="/aireels-web/demo/" class="btn-primary text-lg px-8 py-4">
-          立即体验
+        <a href="/services/" class="btn-primary text-lg px-8 py-4">
+          了解服务
           <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
           </svg>
         </a>
-        <a href="/aireels-web/docs/" class="btn-secondary text-lg px-8 py-4">
-          查看文档
+        <a href="/about/" class="btn-secondary text-lg px-8 py-4">
+          关于我们
         </a>
       </div>
 
-      <!-- Metrics -->
+      <!-- Company Info -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-in">
-        {siteConfig.metrics.map((metric) => (
-          <MetricCard
-            title={metric.title}
-            value={metric.value}
-            trend={metric.trend}
-          />
-        ))}
+        <div class="text-center p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+          <div class="text-2xl font-bold text-white">2024</div>
+          <div class="text-sm text-white/80">成立年份</div>
+        </div>
+        <div class="text-center p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+          <div class="text-2xl font-bold text-white">AI专家</div>
+          <div class="text-sm text-white/80">技术定位</div>
+        </div>
+        <div class="text-center p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+          <div class="text-2xl font-bold text-white">中小企业</div>
+          <div class="text-sm text-white/80">服务对象</div>
+        </div>
+        <div class="text-center p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+          <div class="text-2xl font-bold text-white">郑州</div>
+          <div class="text-sm text-white/80">服务区域</div>
+        </div>
       </div>
     </div>
   </section>
@@ -142,56 +133,34 @@ console.log(result.content);`;
     </div>
   </section>
 
-  <!-- AI Capabilities Demo -->
+  <!-- Services Overview -->
   <section class="py-20 bg-gray-50 dark:bg-tech-black">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold text-tech-black dark:text-white mb-4">
-          AI能力展示
+          我们的服务
         </h2>
         <p class="text-xl text-gray-600 dark:text-gray-400">
-          一行代码调用强大的AI功能
+          专业的AI技术集成与咨询服务
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <!-- Code Demo -->
-        <div>
-          <CodeBlock
-            code={demoCode}
-            language="javascript"
-            title="AI API 调用演示"
-          />
-        </div>
-
-        <!-- Features List -->
-        <div class="space-y-6">
-          {siteConfig.features.map((feature) => (
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 bg-function-blue/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                <svg class="w-6 h-6 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">
-                  {feature.title}
-                </h3>
-                <p class="text-gray-600 dark:text-gray-400 mb-3">
-                  {feature.description}
-                </p>
-                <ul class="space-y-1 text-sm text-gray-500 dark:text-gray-400">
-                  {feature.details.map((detail) => (
-                    <li class="flex items-start">
-                      <span class="w-1.5 h-1.5 bg-function-blue rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {siteConfig.features.map((feature) => (
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-function-blue/10 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-function-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
             </div>
-          ))}
-        </div>
+            <h3 class="text-xl font-bold text-tech-black dark:text-white mb-2">
+              {feature.title}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              {feature.description}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -223,16 +192,16 @@ console.log(result.content);`;
   <section class="py-20 bg-gradient-to-r from-function-blue to-success-green">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-4xl font-bold text-white mb-4">
-        准备开始您的AI之旅了吗？
+        了解更多信息
       </h2>
       <p class="text-xl text-blue-100 mb-8">
-        立即免费体验，感受AI工具带来的效率提升
+        欢迎联系我们，获取专业的AI技术咨询服务
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/aireels-web/demo/" class="bg-white text-function-blue hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-colors text-lg">
-          免费试用 7 天
+        <a href="/services/" class="bg-white text-function-blue hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-colors text-lg">
+          查看服务详情
         </a>
-        <a href="/aireels-web/contact/" class="border-2 border-white text-white hover:bg-white hover:text-function-blue font-bold py-4 px-8 rounded-lg transition-colors text-lg">
+        <a href="mailto:dev@aireels.top" class="border-2 border-white text-white hover:bg-white hover:text-function-blue font-bold py-4 px-8 rounded-lg transition-colors text-lg">
           联系咨询
         </a>
       </div>
