@@ -1,0 +1,20 @@
+---
+import HorizonBrand from './HorizonBrand.astro';
+import { siteConfig } from '../config';
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+---
+<header class="site-header">
+  <HorizonBrand />
+  <nav class="desktop-nav" aria-label="主导航">
+    {siteConfig.nav.map(item => <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.title}</a>)}
+  </nav>
+  <a class="header-contact" href="/contact/">聊聊你的想法 <span aria-hidden="true">↗</span></a>
+  <details class="mobile-navigation">
+    <summary aria-label="展开网站导航"><span></span><span></span></summary>
+    <nav aria-label="移动端主导航">
+      {siteConfig.nav.map(item => <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.title}<span aria-hidden="true">↗</span></a>)}
+      <a href="/contact/" aria-current={path.startsWith('/contact/') ? 'page' : undefined}>联系我们<span aria-hidden="true">↗</span></a>
+    </nav>
+  </details>
+</header>

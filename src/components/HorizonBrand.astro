@@ -1,0 +1,8 @@
+---
+interface Props { footer?: boolean }
+const { footer = false } = Astro.props;
+---
+<a class:list={['horizon-brand', { 'horizon-brand-footer': footer }]} href="/" aria-label="灵映科技 AIReels 首页">
+  <img src="/brand/aireels-logo-master.png" width="2200" height="2200" alt="" decoding="async" />
+  <span class="horizon-brand-type">灵映科技<small>AI INTEGRATION STUDIO</small></span>
+</a>

@@ -1,0 +1,7 @@
+---
+// Preserve review bookmarks without exposing the retired proposal controls.
+export function getStaticPaths() {
+  return ['horizon', 'nexus', 'matter'].map(direction => ({ params: { direction } }));
+}
+return Astro.redirect('/');
+---

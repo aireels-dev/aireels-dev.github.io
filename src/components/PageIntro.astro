@@ -1,0 +1,10 @@
+---
+interface Props { eyebrow: string; title: string; emphasis: string; description: string; label: string; }
+const { eyebrow, title, emphasis, description, label } = Astro.props;
+---
+<section class="page-intro" aria-labelledby="page-title">
+  <div class="page-intro-art" aria-hidden="true"><span></span><span></span><span></span><i>✳</i></div>
+  <a class="breadcrumb" href="/">首页 <span>/ {label}</span></a>
+  <div class="page-intro-content"><p class="eyebrow">{eyebrow}</p><h1 id="page-title">{title}<br /><em>{emphasis}</em></h1><p class="page-intro-description">{description}</p><slot /></div>
+  <div class="page-intro-bottom"><span>AIREELS / AI INTEGRATION STUDIO</span><span>从可能，到日常。</span></div>
+</section>

@@ -1,0 +1,7 @@
+---
+import { siteConfig } from '../config';
+---
+<section class="faq-section section-space" aria-labelledby="faq-title">
+  <div><p class="eyebrow">A FEW THINGS TO KNOW</p><h2 id="faq-title">关于下一步。</h2></div>
+  <div>{siteConfig.faq.map(faq => <details><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}</p></details>)}</div>
+</section>

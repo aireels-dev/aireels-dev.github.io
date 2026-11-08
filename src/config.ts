@@ -69,7 +69,7 @@ export const siteConfig = {
     },
     {
       question: "AI API的成本和效果如何？",
-      answer: "我们会根据您的业务需求推荐最适合的模型和方案，确保性价比最优。"
+      answer: "我们会结合业务需求、使用量与预算评估模型和方案，在实施前说明 API 调用等相关成本。"
     },
     {
       question: "技术支持和后续维护怎么样？",
@@ -89,7 +89,7 @@ export const siteConfig = {
   ],
 
   github: {
-    url: "https://github.com/aireels-dev/aireels-web",
+    url: "https://github.com/aireels-dev/aireels-dev.github.io",
     stars: "Star"
   }
 };

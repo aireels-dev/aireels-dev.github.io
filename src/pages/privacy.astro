@@ -1,17 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-
 <Layout title="隐私政策">
-  <section class="py-20 bg-white dark:bg-gray-900">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-tech-black dark:text-white mb-8">隐私政策</h1>
-      
-      <div class="prose prose-lg dark:prose-invert max-w-none">
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
-          最后更新：{new Date().getFullYear()}年{new Date().getMonth() + 1}月{new Date().getDate()}日
-        </p>
-
+  <section class="legal-page section-space" aria-labelledby="privacy-title">
+    <div class="legal-intro"><a class="breadcrumb" href="/">首页 <span>/ 隐私政策</span></a><h1 id="privacy-title">隐私政策</h1><p>郑州灵映科技有限公司</p></div>
+    <div class="legal-content">
         <h2>信息收集</h2>
         <p>我们收集您主动提供的信息，包括但不限于：</p>
         <ul>
@@ -47,10 +40,9 @@ import Layout from '../layouts/Layout.astro';
         <h2>联系我们</h2>
         <p>如果您对此隐私政策有任何问题，请通过以下方式联系我们：</p>
         <ul>
-          <li>邮箱：dev@aireels.top</li>
-          <li>地址：郑州市高新区</li>
+          <li>邮箱：<a href="mailto:dev@aireels.top">dev@aireels.top</a></li>
+          <li>地址：郑州市惠济区</li>
         </ul>
-      </div>
     </div>
   </section>
 </Layout>

@@ -9,7 +9,7 @@ export default defineConfig({
   site: 'https://aireels-dev.github.io',
   integrations: [
     tailwind(),
-    sitemap(),
+    sitemap({ filter: (page) => !page.includes('/concepts/') && !page.includes('/aireels-web/') }),
     mdx()
   ],
   build: {

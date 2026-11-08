@@ -1,0 +1,73 @@
+---
+const scenarios = [
+  {
+    id: 'support', label: '客户服务', english: 'CUSTOMER EXPERIENCE',
+    title: ['把重复的问题，', '交给更懂业务的助手。'],
+    description: '将企业资料与智能对话能力连接，为客户咨询和内部知识问答提供支持，让团队把时间留给更重要的沟通。',
+    input: ['客户咨询', '企业产品资料', '常见问题与服务规范'],
+    engine: '智能对话与知识问答', output: ['客服机器人', '企业知识助手'],
+  },
+  {
+    id: 'creation', label: '内容创作', english: 'CREATIVE INTELLIGENCE',
+    title: ['从一个想法，', '到一次完整的表达。'],
+    description: '围绕产品信息、品牌语气与发布渠道，将营销文案、短视频脚本和社交媒体内容串成更顺畅的创作过程。',
+    input: ['产品关键词', '品牌语气', '渠道与内容要求'],
+    engine: '大模型与内容模板', output: ['营销文案与视频脚本', '社交媒体内容'],
+  },
+  {
+    id: 'integration', label: '业务集成', english: 'CONNECTED BUSINESS',
+    title: ['让熟悉的系统，', '拥有新的智能能力。'],
+    description: '在既有业务基础上接入大语言模型，按实际需求开发专属工具与功能模块，让智能自然地融入工作流程。',
+    input: ['现有业务系统', '业务需求', '已有工具与流程'],
+    engine: '模型 API 与定制开发', output: ['专属 AI 工具', '智能化功能模块'],
+  },
+];
+---
+<section class="horizon-scenarios section-space" aria-labelledby="scenarios-heading" data-scenarios>
+  <div class="section-heading" data-reveal><div><p class="eyebrow">INTELLIGENCE / IN THE REAL WORLD</p><h2 id="scenarios-heading">不止于想象，<br /><span>更进入你的工作。</span></h2></div><p>从一个具体场景切入，<br />找到适合你的智能化起点。</p></div>
+  <div class="scenario-tabs" role="tablist" aria-label="探索 AI 应用场景">
+    {scenarios.map((scenario, i) => <button type="button" role="tab" id={`tab-${scenario.id}`} aria-controls={`panel-${scenario.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}><span>0{i + 1}</span>{scenario.label}<span aria-hidden="true">↗</span></button>)}
+  </div>
+  {scenarios.map((scenario, i) => <div class="scenario-panel" role="tabpanel" id={`panel-${scenario.id}`} aria-labelledby={`tab-${scenario.id}`} hidden={i !== 0}>
+    <div class="scenario-copy"><p class="eyebrow">{scenario.english}</p><h3>{scenario.title[0]}<br />{scenario.title[1]}</h3><p>{scenario.description}</p><a href="#contact" class="text-link">聊聊这个场景 <span>↗</span></a></div>
+    <div class="scenario-diagram" aria-label={`${scenario.label}能力流程示意`}>
+      <div class="scenario-diagram-heading"><span>BUSINESS × INTELLIGENCE</span><span>应用场景示意</span></div>
+      <div class="scenario-flow">
+        <div class="scenario-input"><span class="scenario-node-label">YOUR CONTEXT / 业务输入</span>{scenario.input.map(input => <span class="scenario-input-item">{input}</span>)}</div>
+        <div class="scenario-connector" aria-hidden="true"></div>
+        <div class="scenario-engine"><span class="scenario-engine-orbit" aria-hidden="true"></span><b>AI</b><span>{scenario.engine}</span></div>
+        <div class="scenario-connector" aria-hidden="true"></div>
+        <div class="scenario-output"><span class="scenario-node-label">NEW POSSIBILITIES / 场景输出</span>{scenario.output.map(output => <span>{output}</span>)}</div>
+      </div>
+      <p class="scenario-diagram-caption">从真实需求出发 · 围绕业务完成集成</p>
+    </div>
+  </div>)}
+</section>
+<script>
+  for (const section of document.querySelectorAll<HTMLElement>('[data-scenarios]')) {
+    const tabs = [...section.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...section.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+    function selectTab(selected: HTMLButtonElement) {
+      for (const tab of tabs) {
+        const active = tab === selected;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+      }
+      for (const panel of panels) panel.hidden = panel.id !== selected.getAttribute('aria-controls');
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', event => {
+        let next: number;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        selectTab(tabs[next]);
+        tabs[next].focus();
+      });
+    });
+  }
+</script>

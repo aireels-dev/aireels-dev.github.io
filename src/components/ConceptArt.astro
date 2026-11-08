@@ -1,0 +1,36 @@
+---
+interface Props { kind: 'horizon' | 'nexus' | 'matter'; compact?: boolean }
+const { kind, compact = false } = Astro.props;
+---
+<div class:list={['concept-art', `art-${kind}`, { compact }]} aria-hidden="true">
+  {kind === 'horizon' && <>
+    <div class="horizon-aura"></div>
+    <canvas class="horizon-starfield" data-art="horizon-stars"></canvas>
+    <div class="horizon-scene">
+      <div class="eclipse"><div class="eclipse-surface"></div></div>
+      <div class="orbit-line orbit-one"></div><div class="orbit-line orbit-two"></div>
+      <canvas data-art="horizon"></canvas>
+    </div>
+    <span class="art-coordinate coord-top">AI / NEW HORIZONS</span>
+    <span class="art-coordinate coord-bottom">INTELLIGENCE HAS A GRAVITY OF ITS OWN.</span>
+  </>}
+  {kind === 'nexus' && <>
+    <div class="nexus-grid"></div><div class="nexus-halo"></div>
+    <div class="system-plate" data-tilt>
+      <div class="plate-top"><span><i></i> AIREELS / INTELLIGENCE LAYER</span><span>01 — 03</span></div>
+      <div class="signal-path path-one"></div><div class="signal-path path-two"></div>
+      <div class="core-chip"><span class="chip-glyph">AI</span><small>AIREELS CORE</small></div>
+      <div class="system-node node-input"><span class="node-icon">↗</span><div><small>YOUR BUSINESS</small><strong>业务需求</strong></div></div>
+      <div class="system-node node-model"><span class="node-icon">✳</span><div><small>MODEL INTEGRATION</small><strong>模型与知识</strong></div></div>
+      <div class="system-node node-output"><span class="node-icon">⌘</span><div><small>REAL WORLD VALUE</small><strong>智能化应用</strong></div></div>
+      <div class="plate-bottom"><span>CONNECT → INTEGRATE → CREATE</span><span>能力架构示意</span></div>
+    </div>
+    <div class="floating-code"><span>your.business</span><b>+</b><span>artificial.intelligence</span></div>
+  </>}
+  {kind === 'matter' && <>
+    <div class="matter-shadow"></div>
+    <canvas data-art="matter"></canvas>
+    <div class="matter-cross cross-one">+</div><div class="matter-cross cross-two">+</div>
+    <div class="matter-caption"><span>FIG. 01 / INTELLIGENCE IN MOTION</span><span>A NEW FORM OF POSSIBILITY</span></div>
+  </>}
+</div>

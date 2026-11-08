@@ -1,0 +1,539 @@
+/* A / Event Horizon. The original artwork is recolored only at display time. */
+.horizon .site-header {
+  height: 112px;
+  border-bottom-color: #ebc69616;
+  background: #090b0e;
+}
+.horizon-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  color: #f1eade;
+}
+.horizon-brand img {
+  display: block;
+  width: 94px;
+  height: 94px;
+  object-fit: contain;
+  /* Keep every part of the source image: no crop, vector redraw or replaced text. */
+  filter: grayscale(1) contrast(1.18) invert(1) sepia(0.14);
+  mix-blend-mode: screen;
+}
+.horizon-brand-type {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+}
+.horizon-brand-type small {
+  display: block;
+  font-size: 7px;
+  color: #b2a696;
+  letter-spacing: 0.16em;
+  margin-top: 9px;
+}
+.horizon .desktop-nav {
+  gap: 36px;
+}
+.horizon .header-contact {
+  padding: 10px 0;
+  border-bottom: 1px solid #edbb7845;
+}
+.horizon .concept-hero {
+  height: calc(100svh - 112px);
+}
+.horizon .hero-copy {
+  padding-top: 125px;
+}
+.horizon .hero-copy h1 {
+  font-size: clamp(62px, 6.9vw, 112px);
+}
+.horizon .hero-copy h1 em {
+  color: #eec48e;
+  background: linear-gradient(100deg, #eac594, #f7dcb4 55%, #c9965c);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.horizon .hero-description {
+  color: #aeb0b3;
+  line-height: 2;
+}
+.horizon .hero-index {
+  color: #ae9677;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+.horizon .primary-action {
+  background: #edc18a;
+  border-color: #edc18a;
+}
+.art-horizon {
+  --horizon-tilt-y: 6deg;
+  --horizon-tilt-x: -3deg;
+  --horizon-tilt-z: 0.4deg;
+  --scene-x: 0;
+  --scene-y: 0;
+  perspective: 1600px;
+}
+.art-horizon .horizon-aura {
+  background:
+    radial-gradient(
+      ellipse at calc(72% + var(--scene-x) * 8%) calc(42% + var(--scene-y) * 8%),
+      #925d3555,
+      transparent 49%
+    ),
+    linear-gradient(90deg, #090b0e 8%, transparent 55%);
+}
+.horizon-scene {
+  --travel-x: 28px;
+  --travel-y: 18px;
+  position: absolute;
+  inset: 0;
+  transform-origin: 70% 46%;
+  transform: translate3d(
+      calc(var(--scene-x) * var(--travel-x)),
+      calc(var(--scene-y) * var(--travel-y) + var(--progress) * 76px),
+      0
+    )
+    rotateX(calc(var(--scene-y) * var(--horizon-tilt-x)))
+    rotateY(calc(var(--scene-x) * var(--horizon-tilt-y)))
+    rotateZ(calc(var(--scene-x) * var(--horizon-tilt-z)))
+    scale(calc(1 + var(--scene-y) * 0.01 - var(--progress) * 0.13));
+  will-change: transform;
+}
+.horizon-scene .eclipse {
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from calc(20deg + var(--scene-x) * 45deg - var(--scene-y) * 22deg),
+    #321a13,
+    #d29151 20%,
+    #fff0bd 27%,
+    #a36538 35%,
+    #2a1913 54%,
+    #9b643f 70%,
+    #f4c98e 85%,
+    #321a13
+  );
+}
+.horizon-scene .eclipse-surface {
+  background: radial-gradient(
+    circle at calc(62% + var(--scene-x) * 16%) calc(18% + var(--scene-y) * 14%),
+    #3c291d 0,
+    #141313 35%,
+    #080b0e 70%
+  );
+}
+.horizon-scene .eclipse:after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from calc(5deg + var(--scene-x) * 45deg - var(--scene-y) * 22deg),
+    transparent 0 18%,
+    #ffe9bbbb 26%,
+    transparent 35% 100%
+  );
+  mask-image: radial-gradient(
+    circle,
+    transparent 66%,
+    #000 68%,
+    transparent 72%
+  );
+  filter: blur(4px);
+}
+.horizon-scene .orbit-line {
+  transform: translate(-50%, -50%) rotate(calc(-30deg + var(--scene-x) * 5deg))
+    rotateX(calc(var(--scene-y) * 8deg));
+  border-color: #c39a635c;
+}
+.horizon-scene .orbit-two {
+  transform: translate(-50%, -50%) rotate(calc(-30deg - var(--scene-x) * 4deg))
+    rotateX(calc(var(--scene-y) * -6deg));
+  border-color: #b88c5538;
+}
+.compact .horizon-scene {
+  --travel-x: 10px;
+  --travel-y: 7px;
+  transform-origin: 55% 40%;
+}
+.horizon .capability-strip {
+  border-color: #edbb781c;
+}
+.horizon .section-heading h2 span {
+  color: #9c9286;
+}
+.horizon .service-panel {
+  border-color: #edbb7826;
+  background: linear-gradient(145deg, #1b1815a1, #0d0f12 75%);
+}
+.horizon .service-top .mono {
+  color: #b6a58e;
+}
+.horizon .service-drawing {
+  margin: 20px 0 36px;
+}
+.horizon-scenarios {
+  padding-top: 20px;
+}
+.scenario-tabs {
+  display: flex;
+  border-top: 1px solid #edbb7829;
+  border-bottom: 1px solid #edbb7829;
+}
+.scenario-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 17px;
+  flex: 1;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #8f8e8b;
+  padding: 24px 22px;
+  text-align: left;
+  font-size: 14px;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.scenario-tabs button[aria-selected="true"] {
+  color: #edc18a;
+  border-bottom-color: #edc18a;
+}
+.scenario-tabs button > span:first-child {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  margin-right: auto;
+}
+.scenario-tabs button > span:last-child {
+  margin-left: auto;
+  font-size: 20px;
+}
+.scenario-panel {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 9%;
+  align-items: center;
+  padding: 60px 0 0;
+}
+.scenario-panel[hidden] {
+  display: none;
+}
+.scenario-copy h3 {
+  font-size: clamp(23px, 2.2vw, 34px);
+  line-height: 1.5;
+  margin: 22px 0;
+}
+.scenario-copy > p:not(.eyebrow) {
+  font-size: 13px;
+  line-height: 2;
+  color: var(--muted);
+}
+.scenario-copy .text-link {
+  max-width: 220px;
+  margin-top: 30px;
+  border-color: #edbb7830;
+  color: #dfc59f;
+}
+.scenario-diagram {
+  background:
+    radial-gradient(ellipse at 50% 45%, #a8763921, transparent 64%),
+    linear-gradient(135deg, #191714, #0c0e11);
+  border: 1px solid #edbb7827;
+  padding: 25px;
+  border-radius: 5px;
+}
+.scenario-diagram-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  color: #a28d70;
+  font-size: 7px;
+  letter-spacing: 0.1em;
+}
+.scenario-flow {
+  padding: 45px 0 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.scenario-node-label {
+  display: block;
+  color: #938a7d;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  margin-bottom: 13px;
+}
+.scenario-input,
+.scenario-output {
+  text-align: center;
+  width: 100%;
+}
+.scenario-input-item {
+  display: inline-block;
+  padding: 7px 12px;
+  border: 1px solid #cfae7b30;
+  margin: 0 3px 5px;
+  color: #c3bbaf;
+  font-size: 10px;
+  border-radius: 3px;
+  background: #17191a;
+}
+.scenario-connector {
+  height: 35px;
+  width: 1px;
+  background: linear-gradient(#d6ac6899, #d6ac6822);
+  margin: 7px 0;
+}
+.scenario-engine {
+  position: relative;
+  width: 180px;
+  padding: 22px 10px;
+  text-align: center;
+}
+.scenario-engine b {
+  display: block;
+  color: #efd2a8;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+.scenario-engine > span:last-child {
+  display: block;
+  color: #c9b08e;
+  font-size: 9px;
+  margin-top: 4px;
+}
+.scenario-engine-orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px solid #edbb7840;
+  border-radius: 50%;
+  transform: rotate(-17deg);
+  box-shadow: 0 0 25px #edbb780d;
+}
+.scenario-engine-orbit:after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border: 1px solid #edbb7812;
+  border-radius: 50%;
+  transform: rotate(28deg);
+}
+.scenario-output > span:not(.scenario-node-label) {
+  display: inline-block;
+  margin: 0 7px;
+  font-size: 12px;
+  color: #e7d6bb;
+}
+.scenario-diagram-caption {
+  text-align: center;
+  border-top: 1px solid #edbb7818;
+  padding-top: 15px;
+  color: #877c6c;
+  font-size: 8px;
+}
+.horizon .concept-footer > .horizon-footer-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin: 0 0 38px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #edbb7818;
+}
+.horizon-brand-footer img {
+  width: 112px;
+  height: 112px;
+}
+.horizon-brand-footer .horizon-brand-type {
+  font-size: 25px;
+}
+.horizon-footer-intro > p {
+  color: #c6bdaf;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.horizon-footer-intro > p > span {
+  font-size: 10px;
+  color: #837e75;
+}
+@media (min-width: 1600px) {
+  .horizon .hero-copy {
+    padding-top: 150px;
+  }
+}
+@media (max-width: 1100px) {
+  .horizon-brand img {
+    width: 84px;
+    height: 84px;
+  }
+  .horizon-brand-type {
+    font-size: 19px;
+  }
+  .horizon-brand-type small {
+    font-size: 6px;
+    letter-spacing: 0.12em;
+  }
+  .horizon .hero-copy h1 {
+    font-size: 70px;
+  }
+  .scenario-panel {
+    gap: 6%;
+  }
+  .scenario-diagram {
+    padding: 20px;
+  }
+  .scenario-input-item {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+}
+@media (max-width: 760px) {
+  .horizon .site-header {
+    height: 96px;
+    padding: 0 5%;
+  }
+  .horizon-brand {
+    gap: 0;
+    margin-left: -8px;
+  }
+  .horizon-brand img {
+    width: 76px;
+    height: 76px;
+  }
+  .horizon-brand-type {
+    font-size: 17px;
+  }
+  .horizon-brand-type small {
+    font-size: 5.5px;
+    letter-spacing: 0.08em;
+    margin-top: 7px;
+  }
+  .horizon .header-contact {
+    font-size: 10px;
+    gap: 12px;
+  }
+  .horizon .concept-hero {
+    height: auto;
+  }
+  .horizon .hero-copy h1 {
+    font-size: clamp(46px, 9vw, 66px);
+  }
+  .horizon .hero-description {
+    font-size: 12px;
+  }
+  .horizon .hero-copy {
+    padding-top: 60px !important;
+  }
+  .horizon .hero-index {
+    display: none;
+  }
+  .art-horizon .horizon-aura {
+    background: radial-gradient(ellipse at 60% 70%, #6c402c3b, transparent 45%);
+  }
+  .horizon-scene {
+    --travel-x: 12px;
+    --travel-y: 8px;
+    transform-origin: 61% 70%;
+  }
+  .horizon .service-drawing {
+    margin: 0 0 25px;
+  }
+  .horizon-scenarios {
+    padding-top: 10px;
+  }
+  .scenario-tabs button {
+    padding: 19px 10px;
+    gap: 9px;
+    font-size: 12px;
+  }
+  .scenario-tabs button > span:first-child {
+    font-size: 7px;
+  }
+  .scenario-tabs button > span:last-child {
+    display: none;
+  }
+  .scenario-panel {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding-top: 35px;
+  }
+  .scenario-copy h3 {
+    font-size: 28px;
+  }
+  .scenario-copy > p:not(.eyebrow) {
+    font-size: 12px;
+  }
+  .scenario-diagram {
+    padding: 20px;
+  }
+  .scenario-diagram-heading {
+    font-size: 6px;
+  }
+  .scenario-flow {
+    padding-top: 32px;
+  }
+  .horizon .concept-footer > .horizon-footer-intro {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 25px;
+    margin-bottom: 28px;
+  }
+  .horizon-brand-footer img {
+    width: 88px;
+    height: 88px;
+  }
+  .horizon-brand-footer .horizon-brand-type {
+    font-size: 21px;
+  }
+  .horizon-footer-intro > p {
+    font-size: 11px;
+    padding-left: 8px;
+  }
+}
+@media (max-width: 380px) {
+  .horizon-brand img {
+    width: 66px;
+    height: 66px;
+  }
+  .horizon-brand-type {
+    font-size: 15px;
+  }
+  .horizon-brand-type small {
+    font-size: 5px;
+  }
+  .horizon .header-contact {
+    font-size: 9px;
+    gap: 8px;
+  }
+  .horizon .hero-copy h1 {
+    font-size: 45px;
+  }
+  .scenario-copy h3 {
+    font-size: 24px;
+  }
+  .scenario-diagram {
+    padding: 16px;
+  }
+  .scenario-input-item {
+    font-size: 8px;
+    padding: 6px;
+    margin: 0 2px 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .horizon-scene {
+    transform: none !important;
+  }
+}
+/* Keep the foreground composed even in a narrow desktop panel. */
+@media (max-width: 760px) and (pointer: fine) {
+  .art-horizon:not(.compact) .horizon-scene {
+    --travel-x: 18px;
+    --travel-y: 12px;
+  }
+}

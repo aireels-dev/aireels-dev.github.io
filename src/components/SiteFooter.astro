@@ -1,0 +1,17 @@
+---
+import HorizonBrand from './HorizonBrand.astro';
+import { siteConfig } from '../config';
+---
+<footer class="concept-footer site-footer">
+  <div class="horizon-footer-intro">
+    <HorizonBrand footer />
+    <p>让智能成为业务的引力。<br /><span>From possibility to everyday impact.</span></p>
+  </div>
+  <nav class="footer-navigation" aria-label="页脚导航">
+    <div><span class="eyebrow">EXPLORE / 探索</span>{siteConfig.nav.map(item => <a href={item.href}>{item.title}</a>)}</div>
+    <div><span class="eyebrow">LET’S TALK / 联系</span><a href="mailto:dev@aireels.top">dev@aireels.top ↗</a><a href="/contact/">联系方式与咨询 ↗</a></div>
+    <p>立足郑州，连接智能与业务。<br /><span>为中小企业和个人创业者而构建。</span></p>
+  </nav>
+  <a class="footer-wordmark" href="/" aria-label="AIReels 返回首页">AIREELS<span>灵映科技</span></a>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} 郑州灵映科技有限公司</span><a href="/privacy/">隐私政策 ↗</a><button class="motion-toggle" type="button" aria-pressed="false">暂停动效</button><a href="#top">返回顶部 ↑</a></div>
+</footer>
