@@ -1,7 +1,7 @@
 export const siteConfig = {
   title: "灵映科技",
   description: "专注为中小企业和个人创业者提供AI集成与智能化解决方案",
-  url: "https://aireels-dev.github.io",
+  url: "https://aireelstech.com",
   author: "郑州灵映科技有限公司",
   logo: "/logo.png",
 

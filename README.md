@@ -1,6 +1,6 @@
 # 灵映科技 · AIReels 官网
 
-基于 Astro 5 的静态企业官网，采用 A「事件视界」视觉方案。正式入口：https://aireels-dev.github.io/ 。
+基于 Astro 5 的静态企业官网，采用 A「事件视界」视觉方案。正式入口：https://aireelstech.com/ 。GitHub Pages 镜像：https://aireels-dev.github.io/ 。
 
 ## 开发与构建
 
@@ -38,4 +38,8 @@ npm run preview -- --host 127.0.0.1 --port 4322
 
 推送 `main` 后，`.github/workflows/deploy.yml` 工作流执行 `npm ci`、`npm run build`，随后部署到 GitHub Pages。实际工作流文件名以仓库 `.github/workflows/` 为准。
 
-GitHub Pages 当前使用 GitHub 默认域名。`public/CNAME` 为仓库保留文件，工作流部署下是否绑定自定义域名以 GitHub Pages 设置为准；canonical 与 sitemap 使用当前可用的默认域名。
+`43.130.52.232` 同步运行官网，`aireelstech.com` 和 `www.aireelstech.com` 的 A 记录指向该服务器。主域名使用 HTTPS，`www` 以 308 跳转到主域名；证书由现有 Caddy 网关自动签发与续期。
+
+服务器配置位于 `deploy/server/`，运行目录为 `/srv/aireels-website`。官网使用独立容器、只读静态目录和版本化发布，常规更新切换 `releases/current`，不需要改动共享网关。首次接入、验证与回退说明见 [服务器部署](deploy/server/README.md)。
+
+canonical 与 sitemap 使用 `https://aireelstech.com`。GitHub Pages 保留默认域名作为镜像；`public/CNAME` 是旧域名保留文件，未用于新域名绑定。

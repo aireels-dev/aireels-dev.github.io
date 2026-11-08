@@ -80,4 +80,6 @@ npm run preview -- --host 127.0.0.1 --port 4322
 
 构建与严格 TypeScript 检查通过。浏览器验证桌面与手机布局、导航、服务锚点、场景切换及手动暂停。系统减少动态效果进行了源码核对，没有改变用户系统偏好；手机尺寸为浏览器视口验证，不是真机测试。
 
-部署目标由 GitHub Pages 设置确认，目前为 `https://aireels-dev.github.io/`；canonical 与 sitemap 对齐该地址。仓库保留的 `www.aireels.top` 未绑定到当前 Pages 站点。
+正式入口为 `https://aireelstech.com/`，canonical 与 sitemap 对齐该地址；`https://aireels-dev.github.io/` 继续作为镜像。官网在 `43.130.52.232` 使用独立的只读静态容器，共享 Caddy 的 HTTPS 入口；`www` 以 308 跳转主域名。
+
+2026-11-09：阿里云增加 `@` 和 `www` 两条 A 记录，指向 `43.130.52.232`，TTL 600 秒；公共 DNS 已确认。两个域名均通过受信任的 TLS 1.3 证书校验，Caddy 保留自动续期。共享网关使用 SIGUSR1 平滑加载；原有七个服务的容器 ID、启动时间和重启次数保持一致，加载期间 20 次就绪探测全部为 HTTP 200，账号页与公开政策页内容哈希保持一致。

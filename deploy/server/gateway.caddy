@@ -1,0 +1,23 @@
+# Append to the existing ingress Caddyfile; keep its global options and project routes.
+https://aireelstech.com {
+	tls {
+		issuer acme {
+			dir https://acme-v02.api.letsencrypt.org/directory
+			email app@aireels.top
+			disable_http_challenge
+		}
+	}
+	header -Server
+	reverse_proxy aireels-website:8080
+}
+
+https://www.aireelstech.com {
+	tls {
+		issuer acme {
+			dir https://acme-v02.api.letsencrypt.org/directory
+			email app@aireels.top
+			disable_http_challenge
+		}
+	}
+	redir https://aireelstech.com{uri} 308
+}
