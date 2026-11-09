@@ -46,8 +46,7 @@ const en = {
     },
     contact: {
       title: "Contact us",
-      description:
-        "Talk to AIReels about AI integration, content tools and technical consulting. Email dev@aireels.top to start a conversation.",
+      description: `Talk to AIReels about AI integration, content tools and technical consulting. Email ${siteConfig.contactEmail} to start a conversation.`,
     },
     privacy: {
       title: "Privacy policy",
@@ -556,8 +555,7 @@ const zh: typeof en = {
     },
     contact: {
       title: "联系我们",
-      description:
-        "联系灵映科技，聊聊 AI 集成、内容创作和技术咨询需求。邮箱 dev@aireels.top。",
+      description: `联系灵映科技，聊聊 AI 集成、内容创作和技术咨询需求。邮箱 ${siteConfig.contactEmail}。`,
     },
     privacy: {
       title: "隐私政策",

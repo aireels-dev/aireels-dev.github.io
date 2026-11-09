@@ -41,6 +41,7 @@ html {
 }
 .footer-navigation > div {
   display: flex;
+  min-width: 0;
   align-items: flex-start;
   flex-direction: column;
   gap: 11px;
@@ -65,6 +66,9 @@ html {
 .footer-navigation a:hover,
 .footer-bottom a:hover {
   color: var(--accent);
+}
+.footer-navigation a[href^="mailto:"] {
+  overflow-wrap: anywhere;
 }
 .site-footer .footer-bottom {
   flex-wrap: wrap;
@@ -1453,5 +1457,20 @@ html[lang="en"] .contact-section h2 {
   html[lang="en"] .story-sticky h2,
   html[lang="en"] .about-composition h2 {
     font-size: 31px;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-footer .footer-navigation {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .contact-intro-mail {
+    max-width: 100%;
+    font-size: clamp(16px, 4.5vw, 22px);
+    gap: 16px;
+  }
+  .contact-intro-mail > span {
+    flex-shrink: 0;
+    font-size: 24px;
   }
 }

@@ -17,6 +17,7 @@ assert.ok(
 const paths = ["", "services/", "about/", "contact/", "privacy/", "404/"];
 const legalName = "郑州灵映科技有限公司";
 const englishCompanyName = "Zhengzhou AIReels Technology Co., Ltd.";
+const contactEmail = "business@aireelstech.com";
 
 function negotiate({
   languages = [],
@@ -104,8 +105,29 @@ test("both languages contain complete pages, localized navigation and alternate-
       const expectedName = locale === "en" ? englishCompanyName : legalName;
       const otherName = locale === "en" ? legalName : englishCompanyName;
       assert.ok(html.includes(`name="author" content="${expectedName}"`));
-      assert.ok(html.includes(`© ${new Date().getFullYear()} ${expectedName}`));
-      assert.ok(!html.includes(otherName), `Wrong-language company name in ${locale}/${path}`);
+      assert.ok(
+        html.includes(`© ${new Date().getFullYear()} ${expectedName}`),
+      );
+      assert.ok(
+        !html.includes(otherName),
+        `Wrong-language company name in ${locale}/${path}`,
+      );
+      assert.ok(
+        html.includes(contactEmail),
+        `Missing public email in ${locale}/${path}`,
+      );
+      assert.doesNotMatch(
+        html,
+        /aireels\.top/i,
+        `Outdated public domain in ${locale}/${path}`,
+      );
+      for (const match of html.matchAll(/href="(mailto:[^"]+)"/g)) {
+        assert.equal(
+          match[1].split("?")[0],
+          `mailto:${contactEmail}`,
+          `Wrong email target in ${locale}/${path}`,
+        );
+      }
       const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(
         (match) => match[1],
       );

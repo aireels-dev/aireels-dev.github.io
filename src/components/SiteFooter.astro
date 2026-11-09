@@ -1,4 +1,5 @@
 ---
+import { siteConfig } from '../config';
 import HorizonBrand from './HorizonBrand.astro';
 import { getCopy } from '../i18n/copy';
 import { localeFromPath, localizedPath } from '../i18n/routing';
@@ -9,7 +10,7 @@ const copy = getCopy(locale);
   <div class="horizon-footer-intro"><HorizonBrand footer /><p>{copy.footer.tagline}<br /><span>{copy.footer.secondary}</span></p></div>
   <nav class="footer-navigation" aria-label={copy.ui.footerNav}>
     <div><span class="eyebrow">{locale === 'zh' ? `EXPLORE / ${copy.footer.links}` : copy.footer.links.toUpperCase()}</span>{['/', '/services/', '/about/'].map((href, i) => <a href={localizedPath(href, locale)}>{copy.nav[i]}</a>)}</div>
-    <div><span class="eyebrow">LET’S TALK</span><a href="mailto:dev@aireels.top">dev@aireels.top ↗</a><a href={localizedPath('/contact/', locale)}>{copy.footer.contact} ↗</a></div>
+    <div><span class="eyebrow">LET’S TALK</span><a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail} ↗</a><a href={localizedPath('/contact/', locale)}>{copy.footer.contact} ↗</a></div>
     <p>{copy.footer.description[0]}<br /><span>{copy.footer.description[1]}</span></p>
   </nav>
   <a class="footer-wordmark" href={localizedPath('/', locale)} aria-label={`AIReels ${copy.ui.home}`}>AIREELS<span>{copy.brand}</span></a>

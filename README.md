@@ -39,7 +39,7 @@ npm run preview -- --host 127.0.0.1 --port 4322
 
 `npm run check:site` 检查实际构建中的语言匹配脚本、偏好与路径保留、双语页面及导航、文案地域限制和 sitemap；GitHub 工作流会在部署前执行。
 
-联系入口使用真实 `mailto:`、`tel:` 链接；网站没有在线表单后台、登录或 AI 生成接口。详细视觉说明与验证记录见 [DESIGN.md](DESIGN.md)。
+公开联系邮箱统一为 `business@aireelstech.com`，由 `src/config.ts` 的 `contactEmail` 集中维护。联系入口使用真实 `mailto:`、`tel:` 链接；网站没有在线表单后台、登录或 AI 生成接口。详细视觉说明与验证记录见 [DESIGN.md](DESIGN.md)。
 
 ## 部署
 
@@ -49,4 +49,4 @@ npm run preview -- --host 127.0.0.1 --port 4322
 
 服务器配置位于 `deploy/server/`，运行目录为 `/srv/aireels-website`。官网使用独立容器、只读静态目录和版本化发布，常规更新切换 `releases/current`，不需要改动共享网关。首次接入、验证与回退说明见 [服务器部署](deploy/server/README.md)。
 
-canonical 与 sitemap 使用 `https://aireelstech.com`。GitHub Pages 保留默认域名作为镜像；`public/CNAME` 是旧域名保留文件，未用于新域名绑定。
+canonical、sitemap 与公开域名标记 `public/CNAME` 统一使用 `aireelstech.com`。主域名由自有服务器承载，GitHub Pages 当前设置保留默认域名作为镜像；实际绑定以 Pages 设置为准。

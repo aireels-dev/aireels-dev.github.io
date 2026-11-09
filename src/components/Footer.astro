@@ -43,8 +43,8 @@ import { siteConfig } from '../config';
         <ul class="space-y-2 text-sm text-gray-400">
           <li><a href="/services/" class="hover:text-white transition-colors">服务介绍</a></li>
           <li><a href="/about/" class="hover:text-white transition-colors">关于我们</a></li>
-          <li><a href="mailto:dev@aireels.top" class="hover:text-white transition-colors">技术支持</a></li>
-          <li><a href="mailto:dev@aireels.top" class="hover:text-white transition-colors">在线咨询</a></li>
+          <li><a href={`mailto:${siteConfig.contactEmail}`} class="hover:text-white transition-colors">技术支持</a></li>
+          <li><a href={`mailto:${siteConfig.contactEmail}`} class="hover:text-white transition-colors">在线咨询</a></li>
         </ul>
       </div>
 
@@ -56,7 +56,7 @@ import { siteConfig } from '../config';
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
-            <span>dev@aireels.top</span>
+            <span>{siteConfig.contactEmail}</span>
           </div>
           <div class="flex items-center space-x-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,7 +84,7 @@ import { siteConfig } from '../config';
 
         <!-- Contact Info -->
         <div class="flex items-center space-x-4 text-xs text-gray-500">
-          <span>邮箱: dev@aireels.top</span>
+          <span>邮箱: {siteConfig.contactEmail}</span>
           <span>|注册地: 郑州市惠济区</span>
         </div>
       </div>

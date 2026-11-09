@@ -1,4 +1,5 @@
 ---
+import { siteConfig } from '../config';
 import { getCopy } from '../i18n/copy';
 import { localeFromPath, localizedPath } from '../i18n/routing';
 const locale = localeFromPath(Astro.url.pathname);
@@ -8,5 +9,5 @@ const copy = getCopy(locale);
   <div class="contact-glow" aria-hidden="true"></div><p class="eyebrow" data-reveal>YOUR NEXT CHAPTER STARTS HERE.</p>
   <h2 id="contact-title" data-reveal>{copy.cta.title[0]}<br />{copy.cta.title[1]}</h2>
   <a class="contact-mail" href={localizedPath('/contact/', locale)} data-magnetic>{copy.ui.talk} <span aria-hidden="true">↗</span></a>
-  <p><a href="mailto:dev@aireels.top">dev@aireels.top</a> <span>/</span> {copy.cta.brand}</p>
+  <p><a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a> <span>/</span> {copy.cta.brand}</p>
 </section>
