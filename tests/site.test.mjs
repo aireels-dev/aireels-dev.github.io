@@ -140,7 +140,15 @@ test("both languages contain complete pages, localized navigation and alternate-
         /<a\b([^>]*?)href="([^"]+)"([^>]*)>/g,
       )) {
         if (!match[2].startsWith("/")) continue;
-        if (`${match[1]} ${match[3]}`.includes("data-set-language")) continue;
+        const attributes = `${match[1]} ${match[3]}`;
+        if (attributes.includes("data-set-language")) continue;
+        if (/\bdownload(?:\s|=|$)/.test(attributes)) {
+          assert.doesNotThrow(
+            () => readFileSync(new URL(`../dist${match[2]}`, import.meta.url)),
+            `Missing downloadable asset: ${match[2]}`,
+          );
+          continue;
+        }
         assert.ok(
           match[2].startsWith(`/${locale}/`),
           `Wrong-language link in ${locale}/${path}: ${match[2]}`,

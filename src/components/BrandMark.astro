@@ -1,0 +1,12 @@
+---
+import logo from '../assets/aireels-logo.svg?raw';
+
+// Keep the approved artwork; inherit its display color without image filters.
+// IDs are unnecessary here and would repeat between the header and footer.
+const artwork = logo
+  .replace(/<svg\b[^>]*>/, '')
+  .replace(/<\/svg>\s*$/, '')
+  .replace(/\sid="[^"]*"/g, '')
+  .replace(/(fill|stroke)="#000"/g, '$1="currentColor"');
+---
+<svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2200 2200" width="2200" height="2200" fill="currentColor" shape-rendering="geometricPrecision" aria-hidden="true" focusable="false"><Fragment set:html={artwork} /></svg>

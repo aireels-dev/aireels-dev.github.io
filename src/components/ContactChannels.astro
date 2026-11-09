@@ -1,0 +1,31 @@
+---
+import { siteConfig } from '../config';
+import { getCopy } from '../i18n/copy';
+import { localeFromPath } from '../i18n/routing';
+
+const copy = getCopy(localeFromPath(Astro.url.pathname));
+const social = copy.contactPage.social;
+const channels = [
+  { id: 'wechat', label: 'WECHAT', account: siteConfig.wechatId, ...social.wechat },
+  { id: 'feishu', label: 'FEISHU', account: copy.brand, ...social.feishu },
+];
+---
+<div class="contact-channels">
+  {channels.map(channel => (
+    <article class="contact-channel" aria-labelledby={`contact-${channel.id}-title`}>
+      <div class="contact-channel-copy">
+        <p class="eyebrow">CONNECT / {channel.label}</p>
+        <h3 id={`contact-${channel.id}-title`}>{channel.name}</h3>
+        <p class="contact-channel-account"><span>{channel.accountLabel}</span><strong class="selectable">{channel.account}</strong></p>
+        <p class="contact-channel-description">{channel.description}</p>
+      </div>
+      <figure class="contact-qr-frame">
+        <img src={`/contact/${channel.id}-qr.svg`} width="216" height="216" alt={channel.alt} loading="lazy" decoding="async" />
+      </figure>
+      <a class="contact-qr-save" href={`/contact/${channel.id}-qr.png`} download={`aireels-${channel.id}-qr.png`}>
+        {social.download}<span aria-hidden="true">↓</span>
+      </a>
+    </article>
+  ))}
+</div>
+<p class="contact-qr-hint">{social.mobileHint}</p>

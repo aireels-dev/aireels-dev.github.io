@@ -49,4 +49,8 @@ npm run preview -- --host 127.0.0.1 --port 4322
 
 服务器配置位于 `deploy/server/`，运行目录为 `/srv/aireels-website`。官网使用独立容器、只读静态目录和版本化发布，常规更新切换 `releases/current`，不需要改动共享网关。首次接入、验证与回退说明见 [服务器部署](deploy/server/README.md)。
 
+最终版统一使用 `BrandMark.astro` 内联 SVG，导航、页脚及关于页复用同一份完整几何路径；标签页图标为白底黑色。中英文联系页包含微信 `aireels` 与飞书二维码，提供 PNG 保存入口。SVG 原文件另在公司资料目录备份。
+
+正式服务器采用已成功部署到 GitHub Pages 的同一次工作流产物，校验归档和文件哈希后原子切换，保留上一版本与旧哈希资源。`design/`、`public/review/` 和旧方案组件是本地评审资料，不提交或发布。发布后的完整网络验收可运行 `./verify-deployment.sh`，可用 `SITE_URL` / `MIRROR_URL` 指定入口。
+
 canonical、sitemap 与公开域名标记 `public/CNAME` 统一使用 `aireelstech.com`。主域名由自有服务器承载，GitHub Pages 当前设置保留默认域名作为镜像；实际绑定以 Pages 设置为准。

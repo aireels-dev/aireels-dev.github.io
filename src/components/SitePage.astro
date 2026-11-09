@@ -5,6 +5,8 @@ import PageIntro from './PageIntro.astro';
 import HorizonHome from './HorizonHome.astro';
 import HorizonScenarios from './HorizonScenarios.astro';
 import ContactCTA from './ContactCTA.astro';
+import ContactChannels from './ContactChannels.astro';
+import BrandMark from './BrandMark.astro';
 import FaqSection from './FaqSection.astro';
 import { getCopy } from '../i18n/copy';
 import { localeFromPath, localizedPath, type Page } from '../i18n/routing';
@@ -36,7 +38,7 @@ const emailFor = (subject: string) => `mailto:${siteConfig.contactEmail}?subject
   </>}
 
   {page === 'about' && <>
-    <section class="company-section section-space" id="who-we-are" aria-labelledby="company-title"><div class="company-mark" aria-hidden="true"><div class="company-mark-orbit"></div><img src="/brand/aireels-logo-master.png" width="2200" height="2200" alt="" loading="lazy" /><span>AIREELS / HUMAN × INTELLIGENCE</span></div><div class="company-copy" data-reveal><p class="eyebrow">A SMALLER DISTANCE TO WHAT’S NEXT</p><h2 id="company-title">{about.companyTitle[0]}<br /><span>{about.companyTitle[1]}</span></h2><p class="company-lead" lang={locale === 'zh' ? 'zh-CN' : 'en'}>{copy.company.name}</p>{about.companyDescription.map(paragraph => <p>{paragraph}</p>)}<a class="text-link" href={localizedPath('/services/', locale)}>{about.more} <span aria-hidden="true">↗</span></a></div></section>
+    <section class="company-section section-space" id="who-we-are" aria-labelledby="company-title"><div class="company-mark" aria-hidden="true"><div class="company-mark-orbit"></div><BrandMark /><span>AIREELS / HUMAN × INTELLIGENCE</span></div><div class="company-copy" data-reveal><p class="eyebrow">A SMALLER DISTANCE TO WHAT’S NEXT</p><h2 id="company-title">{about.companyTitle[0]}<br /><span>{about.companyTitle[1]}</span></h2><p class="company-lead" lang={locale === 'zh' ? 'zh-CN' : 'en'}>{copy.company.name}</p>{about.companyDescription.map(paragraph => <p>{paragraph}</p>)}<a class="text-link" href={localizedPath('/services/', locale)}>{about.more} <span aria-hidden="true">↗</span></a></div></section>
     <section class="principles-section section-space" aria-labelledby="principles-title"><div class="section-heading" data-reveal><div><p class="eyebrow">WHAT WE BELIEVE</p><h2 id="principles-title">{about.principlesTitle[0]}<br /><span>{about.principlesTitle[1]}</span></h2></div><p>{about.principlesDescription[0]}<br />{about.principlesDescription[1]}</p></div><div class="principles-list">{about.principles.map(principle => <article data-reveal><span class="principle-number">{principle.number}</span><div><p class="eyebrow">{principle.label}</p><h3>{principle.title}</h3></div><p>{principle.description}</p></article>)}</div></section>
     <section class="audience-section section-space" aria-labelledby="audience-title"><div class="section-heading" data-reveal><div><p class="eyebrow">BUILT FOR YOU</p><h2 id="audience-title">{about.audienceTitle[0]}<br /><span>{about.audienceTitle[1]}</span></h2></div><p>{about.audienceDescription[0]}<br />{about.audienceDescription[1]}</p></div><div class="audience-grid">{about.audiences.map((audience, i) => <article data-reveal data-spotlight><span class="mono">0{i + 1} / {audience[0]}</span><h3>{audience[1]}</h3><p>{audience[2]}</p></article>)}</div></section>
     <section class="location-section section-space" aria-labelledby="location-title"><div data-reveal><p class="eyebrow">{about.companyInfo}</p><h2 id="location-title">{about.infoTitle[0]}<br />{about.infoTitle[1]}</h2><dl class="company-information"><div><dt>{about.companyLabel}</dt><dd lang={locale === 'zh' ? 'zh-CN' : 'en'}>{copy.company.name}</dd></div><div><dt>{about.registeredOffice}</dt><dd>{copy.company.registeredOffice}</dd></div><div><dt>{about.hoursLabel}</dt><dd>{copy.company.hours}</dd></div></dl><a class="text-link" href={localizedPath('/contact/', locale)}>{copy.ui.contact} <span aria-hidden="true">↗</span></a></div><div class="location-art" aria-hidden="true"><span></span><span></span><span></span><i></i><b>AIREELS<small>{about.artSignature}</small></b></div></section>
@@ -45,7 +47,16 @@ const emailFor = (subject: string) => `mailto:${siteConfig.contactEmail}?subject
 
   {page === 'contact' && <>
     <section class="contact-options section-space" aria-labelledby="contact-options-title"><div data-reveal><p class="eyebrow">FIND THE RIGHT STARTING POINT</p><h2 id="contact-options-title">{contact.optionsTitle[0]}<br /><span>{contact.optionsTitle[1]}</span></h2><p>{contact.optionsDescription[0]}<br />{contact.optionsDescription[1]}</p><span class="contact-hint">{contact.hint}</span></div><div class="contact-service-links">{copy.services.map((service, i) => <a href={emailFor(service.category)} data-reveal><span class="mono">0{i + 1} / {service.english}</span><strong>{service.category}</strong><span aria-hidden="true">↗</span></a>)}</div></section>
-    <section class="contact-information section-space" aria-labelledby="information-title"><p class="eyebrow">STAY CONNECTED</p><h2 id="information-title">{contact.informationTitle}</h2><div class="contact-information-grid"><article><span class="eyebrow">01 / EMAIL</span><h3>{contact.labels[0]}</h3><a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail} ↗</a></article><article><span class="eyebrow">02 / PHONE</span><h3>{contact.labels[1]}</h3><a href="tel:+8615330058983">+86 153 3005 8983 ↗</a></article><article><span class="eyebrow">03 / WECHAT</span><h3>{contact.labels[2]}</h3><p class="selectable">aiReels2025</p></article><article><span class="eyebrow">04 / REGISTERED OFFICE</span><h3>{contact.labels[3]}</h3><p>{copy.company.registeredOffice}<br />{copy.company.hours}</p></article></div></section>
+    <section class="contact-information section-space" aria-labelledby="information-title">
+      <p class="eyebrow">STAY CONNECTED</p>
+      <h2 id="information-title">{contact.informationTitle}</h2>
+      <div class="contact-information-grid">
+        <article><span class="eyebrow">01 / EMAIL</span><h3>{contact.labels[0]}</h3><a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail} ↗</a></article>
+        <article><span class="eyebrow">02 / PHONE</span><h3>{contact.labels[1]}</h3><a href="tel:+8615330058983">+86 153 3005 8983 ↗</a></article>
+        <article><span class="eyebrow">03 / REGISTERED OFFICE</span><h3>{contact.labels[2]}</h3><p>{copy.company.registeredOffice}<br />{copy.company.hours}</p></article>
+      </div>
+      <ContactChannels />
+    </section>
     <section class="conversation-note section-space"><span class="eyebrow">BEFORE WE TALK</span><h2>{contact.noteTitle[0]}<br /><span>{contact.noteTitle[1]}</span></h2><p>{contact.note}</p><a class="primary-action" href={emailFor(contact.subject)}>{contact.emailAction} <span aria-hidden="true">↗</span></a></section>
   </>}
 

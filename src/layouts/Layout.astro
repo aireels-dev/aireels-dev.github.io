@@ -36,8 +36,9 @@ const canonical = new URL(localizedPath(Astro.url.pathname, locale), siteConfig.
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
     {!noindex && <><link rel="alternate" hreflang="en" href={new URL(localizedPath(Astro.url.pathname, 'en'), siteConfig.url).href} /><link rel="alternate" hreflang="zh-CN" href={new URL(localizedPath(Astro.url.pathname, 'zh'), siteConfig.url).href} /><link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|zh)(?=\/|$)/, '') || '/', siteConfig.url).href} /></>}
-    <link rel="icon" type="image/png" href={siteConfig.logo} />
-    <link rel="apple-touch-icon" href={siteConfig.logo} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=white-original" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=white-original" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/brand/aireels-touch-icon.png?v=white-original" sizes="180x180" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_US'} />
     <meta property="og:locale:alternate" content={locale === 'zh' ? 'en_US' : 'zh_CN'} />

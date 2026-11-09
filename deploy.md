@@ -1,98 +1,18 @@
 # 部署指南
 
-## GitHub 仓库设置步骤
+仓库为 [aireels-dev/aireels-dev.github.io](https://github.com/aireels-dev/aireels-dev.github.io)，正式入口为 [aireelstech.com](https://aireelstech.com/)，[GitHub Pages](https://aireels-dev.github.io/) 保留为镜像。
 
-### 1. 创建 GitHub 仓库
-请按照以下步骤手动创建 GitHub 仓库：
+推送 `main` 后，`.github/workflows/deploy.yml` 安装锁定依赖、构建静态页面、执行站点检查，并发布 GitHub Pages。以该次成功工作流的 `github-pages` 产物同步独立服务器，保证两个入口使用同一份构建文件。
 
-1. 访问 https://github.com/new
-2. 设置仓库信息：
-   - **Repository name**: `aireels-web`
-   - **Owner**: `lixingmao`
-   - **Description**: `AIReels官网 - 基于Astro.js的极简技术风格官网`
-   - **Visibility**: Public
-   - **不要勾选**: "Add a README file", "Add .gitignore", "Choose a license"
-
-3. 点击 "Create repository"
-
-### 2. 推送代码到 GitHub
-
-在项目根目录执行以下命令：
-
-```bash
-# 推送代码到 GitHub（需要身份验证）
-git push -u origin main
-```
-
-### 3. 配置 GitHub Pages
-
-1. 进入仓库设置页面：
-   - 访问 `https://github.com/lixingmao/aireels-web/settings`
-
-2. 找到 "Pages" 选项：
-   - 在左侧菜单中点击 "Pages"
-
-3. 配置部署源：
-   - **Source**: 选择 "GitHub Actions"
-   - 系统会自动检测到我们的 `.github/workflows/deploy.yml` 文件
-
-4. 确认配置：
-   - 点击 "Save" 保存设置
-
-### 4. 等待部署完成
-
-1. 推送代码后，GitHub Actions 会自动触发部署
-2. 可以在 `Actions` 标签页查看部署进度
-3. 部署完成后，网站将在以下地址可用：
-   ```
-   https://lixingmao.github.io/aireels-web
-   ```
-
-## 本地开发命令
-
-```bash
-# 安装依赖
-npm install
-
-# 启动开发服务器
-npm run dev
-
-# 构建生产版本
+```sh
+npm ci
 npm run build
-
-# 预览构建结果
-npm run preview
+npm run check:site
+./verify-deployment.sh
 ```
 
-## 故障排除
+服务器通过版本目录与原子符号链接发布，更新前后核对静态文件哈希、共享网关配置及已有容器状态，保留旧版以便回退。常规更新不重启容器、不修改共享网关和 DNS。详细操作见 [服务器部署](deploy/server/README.md)。
 
-### 如果推送失败
-1. 确保 GitHub 仓库已创建
-2. 检查 Git 配置：
-   ```bash
-   git config --global user.name "Your Name"
-   git config --global user.email "your.email@example.com"
-   ```
-3. 如果需要身份验证，使用 Personal Access Token
+设计实验、截图与 SVG 对照页仅留本地，不进入生产源码或静态产物。验收应确认正式页面及资源可访问，而 `/review/` 评审路径返回 404。
 
-### 如果部署失败
-1. 检查 GitHub Actions 日志
-2. 确保 `package.json` 中的依赖版本正确
-3. 检查 `astro.config.mjs` 中的 site 和 base 配置
-
-## 项目特色
-
-- ✅ 极简技术风格设计
-- ✅ 完整的 6 个页面
-- ✅ 响应式布局
-- ✅ 暗色模式支持
-- ✅ 代码高亮展示
-- ✅ AI 功能演示
-- ✅ 自动化部署
-- ✅ SEO 优化
-
-## 联系信息
-
-如有问题，请通过以下方式联系：
-- Email: contact@lytech.ai
-- 项目地址: https://github.com/aireels-dev/aireels-web
+公开联系邮箱：business@aireelstech.com。

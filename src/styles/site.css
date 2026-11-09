@@ -388,12 +388,11 @@ html {
   border: 1px solid #edbb781b;
   overflow: hidden;
 }
-.company-mark img {
+.company-mark .brand-mark {
   width: 75%;
   height: 75%;
-  object-fit: contain;
-  filter: grayscale(1) contrast(1.18) invert(1) sepia(0.14);
-  mix-blend-mode: screen;
+  display: block;
+  color: #f1eade;
 }
 .company-mark > span {
   position: absolute;
@@ -638,7 +637,7 @@ html {
 }
 .contact-information-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 35px;
 }
 .contact-information-grid article {
@@ -666,6 +665,93 @@ html {
 }
 .selectable {
   user-select: all;
+}
+.contact-channels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 56px;
+}
+.contact-channel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 216px;
+  grid-template-areas: "copy code" "save code";
+  gap: 24px;
+  padding: 28px;
+  border: 1px solid #edbb782b;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #edbb7807, transparent 65%), #111316;
+}
+.contact-channel-copy {
+  grid-area: copy;
+  min-width: 0;
+}
+.contact-channel .eyebrow {
+  font-size: 8px;
+  color: #b29b7b;
+}
+.contact-channel h3 {
+  margin: 19px 0 18px;
+  font-size: 27px;
+  font-weight: 400;
+}
+.contact-channel-account {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.contact-channel-account strong {
+  font-size: 15px;
+  font-weight: 400;
+  color: #e8c99e;
+}
+.contact-channel .contact-channel-description {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+.contact-qr-frame {
+  grid-area: code;
+  align-self: center;
+  width: 216px;
+  max-width: 100%;
+  margin: 0;
+  border: 1px solid #edbb7840;
+  border-radius: 3px;
+  background: #e7d1ae;
+}
+.contact-qr-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.contact-qr-save {
+  grid-area: save;
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  align-self: end;
+  gap: 20px;
+  min-height: 44px;
+  padding: 8px 0;
+  border-bottom: 1px solid #edbb7850;
+  color: #e8c99e;
+  font-size: 11px;
+}
+.contact-qr-save:hover,
+.contact-qr-save:focus-visible {
+  color: #f7dfbd;
+  border-bottom-color: currentColor;
+}
+.contact-information .contact-qr-hint {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.9;
 }
 .conversation-note {
   text-align: center;
@@ -782,9 +868,12 @@ html {
   .principles-list h3 {
     font-size: 23px;
   }
-  .contact-information-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px;
+  .contact-channel {
+    grid-template-columns: 1fr;
+    grid-template-areas: "copy" "code" "save";
+  }
+  .contact-qr-frame {
+    justify-self: center;
   }
 }
 @media (max-width: 760px) {
@@ -1047,7 +1136,16 @@ html {
     margin-bottom: 35px;
   }
   .contact-information-grid {
+    grid-template-columns: 1fr;
     gap: 35px 20px;
+  }
+  .contact-channels {
+    grid-template-columns: 1fr;
+    margin-top: 40px;
+    gap: 16px;
+  }
+  .contact-channel {
+    padding: 24px;
   }
   .contact-information-grid h3 {
     font-size: 15px;
@@ -1239,7 +1337,7 @@ html[lang="en"] .contact-section h2 {
   .production-site .horizon-brand {
     margin-left: -6px;
   }
-  .production-site .horizon-brand img {
+  .production-site .horizon-brand .brand-mark {
     width: 64px;
     height: 64px;
   }
@@ -1421,7 +1519,7 @@ html[lang="en"] .contact-section h2 {
     padding-left: 4.5%;
     padding-right: 4.5%;
   }
-  .production-site .horizon-brand img {
+  .production-site .horizon-brand .brand-mark {
     width: 58px;
     height: 58px;
   }

@@ -4,6 +4,7 @@ export const siteConfig = {
   url: "https://aireelstech.com",
   author: "郑州灵映科技有限公司",
   contactEmail: "business@aireelstech.com",
+  wechatId: "aireels",
   logo: "/logo.png",
 
   nav: [

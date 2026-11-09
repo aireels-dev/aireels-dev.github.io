@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local design experiments and review evidence, excluded from production source.
+design/
+public/review/
+public/brand/aireels-logo-vector-candidate.svg
+public/brand/aireels-logo-vector-v1.svg
+src/design/
+src/layouts/ConceptLayout.astro
+src/components/HorizonTiltControl.astro
