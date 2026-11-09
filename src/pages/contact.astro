@@ -1,26 +1,4 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PageIntro from '../components/PageIntro.astro';
-import { siteConfig } from '../config';
-import { servicePresentation } from '../data/site-content';
-const emailFor = (subject: string) => `mailto:dev@aireels.top?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('你好，灵映科技：\n\n我们希望了解' + subject + '。\n\n业务背景：\n目前的问题：\n希望实现的目标：\n方便联系的方式：\n')}`;
+import SitePage from '../components/SitePage.astro';
 ---
-<Layout title="联系我们" description="联系郑州灵映科技，聊聊 AI 集成、内容创作和技术咨询需求。邮箱 dev@aireels.top，工作时间周一至周五 9:00–18:00。">
-  <PageIntro label="联系我们" eyebrow="LET’S BUILD WHAT’S NEXT / 联系我们" title="下一种可能，" emphasis="从一次交流开始。" description="不必先准备一份完整的技术方案。告诉我们你的业务、遇到的问题，以及想要抵达的地方。">
-    <a class="contact-intro-mail" href={emailFor('AI 应用方案咨询')}>dev@aireels.top <span aria-hidden="true">↗</span></a>
-  </PageIntro>
-  <section class="contact-options section-space" aria-labelledby="contact-options-title">
-    <div data-reveal><p class="eyebrow">FIND THE RIGHT STARTING POINT</p><h2 id="contact-options-title">你的想法，<br /><span>我们一起展开。</span></h2><p>选择一个方向，通过邮件介绍你的需求。<br />也可以直接使用下方联系方式与我们交流。</p><span class="contact-hint">点击服务方向，将打开你设备上的邮件应用。</span></div>
-    <div class="contact-service-links">{servicePresentation.map((service, i) => <a href={emailFor(siteConfig.features[i].title)} data-reveal><span class="mono">0{i + 1} / {service.english}</span><strong>{siteConfig.features[i].title}</strong><span aria-hidden="true">↗</span></a>)}</div>
-  </section>
-  <section class="contact-information section-space" aria-labelledby="information-title">
-    <p class="eyebrow">STAY CONNECTED</p><h2 id="information-title">保持联系。</h2>
-    <div class="contact-information-grid">
-      <article><span class="eyebrow">01 / EMAIL</span><h3>邮箱</h3><a href="mailto:dev@aireels.top">dev@aireels.top ↗</a></article>
-      <article><span class="eyebrow">02 / PHONE</span><h3>电话</h3><a href="tel:+8615330058983">153 3005 8983 ↗</a></article>
-      <article><span class="eyebrow">03 / WECHAT</span><h3>微信</h3><p class="selectable">aiReels2025</p></article>
-      <article><span class="eyebrow">04 / LOCATION</span><h3>所在地与时间</h3><p>郑州市惠济区<br />周一至周五 9:00–18:00</p></article>
-    </div>
-  </section>
-  <section class="conversation-note section-space"><span class="eyebrow">BEFORE WE TALK</span><h2>从你的业务说起，<br /><span>技术的部分，交给我们一起梳理。</span></h2><p>如果方便，可以在邮件里写下：你正在做什么、哪些工作需要改进，以及预期的效果与预算范围。这将帮助我们更快理解你的需求。</p><a class="primary-action" href={emailFor('AI 应用方案咨询')}>开始一封邮件 <span aria-hidden="true">↗</span></a></section>
-</Layout>
+<SitePage page="contact" languageEntry />

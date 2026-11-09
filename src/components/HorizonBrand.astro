@@ -1,8 +1,12 @@
 ---
+import { getCopy } from '../i18n/copy';
+import { localeFromPath, localizedPath } from '../i18n/routing';
 interface Props { footer?: boolean }
 const { footer = false } = Astro.props;
+const locale = localeFromPath(Astro.url.pathname);
+const copy = getCopy(locale);
 ---
-<a class:list={['horizon-brand', { 'horizon-brand-footer': footer }]} href="/" aria-label="灵映科技 AIReels 首页">
+<a class:list={['horizon-brand', { 'horizon-brand-footer': footer }]} href={localizedPath('/', locale)} aria-label={`${copy.brand} ${copy.ui.home}`}>
   <img src="/brand/aireels-logo-master.png" width="2200" height="2200" alt="" decoding="async" />
-  <span class="horizon-brand-type">灵映科技<small>AI INTEGRATION STUDIO</small></span>
+  <span class="horizon-brand-type">{copy.brand}<small>AI INTEGRATION STUDIO</small></span>
 </a>

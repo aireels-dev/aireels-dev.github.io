@@ -8,22 +8,25 @@
 npm ci
 npm run dev
 npm run build
+npm run check:site
 npm run preview -- --host 127.0.0.1 --port 4322
 ```
 
 ## 页面
 
-- `/`：品牌主视觉、服务概览、应用场景、合作流程与 FAQ。
-- `/services/`：三项服务的范围、适用需求、应用方向与合作方式。
-- `/about/`：公司定位、服务理念、服务对象与所在地。
-- `/contact/`：邮件咨询、电话、微信和工作时间。
-- `/privacy/`：隐私政策。
-- `/404.html`：未找到页面；旧 `/aireels-web/` 与 `/concepts/` 系列入口跳转首页。
+- `/en/`、`/zh/`：完整英文与简体中文首页。
+- 两种语言均包含 `services/`、`about/`、`contact/`、`privacy/` 和 `404/` 页面。
+- `/` 及原来的无语言前缀内页按浏览器支持的语言匹配，无法匹配时使用英文；手动选择优先，并保留页面、查询参数和锚点。
+- 顶部语言选择使用显式语言链接；浏览器禁用 JavaScript 时，入口保留可阅读的英文页面。
+- `/404.html` 为默认英文错误页；服务器根据 `/zh/` 前缀提供中文错误页，保留 HTTP 404 状态。
+- 旧 `/aireels-web/` 与 `/concepts/` 系列入口继续跳转首页。
 
 ## 内容和视觉维护
 
 - `src/config.ts`：站点信息、导航、服务范围及 FAQ。
 - `src/data/site-content.ts`：服务展示文案、应用方向及合作流程。
+- `src/i18n/copy.ts`、`routing.ts`：完整语言文案、语言路径与页面类型。
+- `src/components/SitePage.astro`：共享的双语页面模板；语言页面由静态路径生成。
 - `src/layouts/Layout.astro`、`SiteHeader.astro`、`SiteFooter.astro`：公共布局及导航。
 - `src/components/HorizonHome.astro`：首页内容；`HorizonScenarios.astro`：可键盘操作的场景选项卡。
 - `src/styles/horizon.css`：光轮、品牌与应用场景；`site.css`：正式页面与移动导航。
@@ -31,6 +34,10 @@ npm run preview -- --host 127.0.0.1 --port 4322
 - `public/brand/aireels-logo-master.png`：完整 Logo 原稿，以 CSS 适配深色背景。
 
 光轮最大水平倾角固定 6°，纵向 3°、平面扭转 0.4°。前景响应时间常数 320ms，背景 90ms。背景粒子独立绘制，绘制频率上限 30fps；触摸设备不依赖鼠标交互，支持系统减少动态效果及页脚手动暂停。
+
+手机首屏按文案、独立光轮画面、滚动提示三行排布，装饰小字在手机隐藏，光轮和粒子居中。页面使用 `lang`、canonical 与双向 hreflang，sitemap 仅收录两种语言的十个正式内容页面。地域信息仅保留公司全称和明确标注的注册地。
+
+`npm run check:site` 检查实际构建中的语言匹配脚本、偏好与路径保留、双语页面及导航、文案地域限制和 sitemap；GitHub 工作流会在部署前执行。
 
 联系入口使用真实 `mailto:`、`tel:` 链接；网站没有在线表单后台、登录或 AI 生成接口。详细视觉说明与验证记录见 [DESIGN.md](DESIGN.md)。
 

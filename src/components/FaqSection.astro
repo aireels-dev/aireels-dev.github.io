@@ -1,7 +1,9 @@
 ---
-import { siteConfig } from '../config';
+import { getCopy } from '../i18n/copy';
+import { localeFromPath } from '../i18n/routing';
+const copy = getCopy(localeFromPath(Astro.url.pathname));
 ---
 <section class="faq-section section-space" aria-labelledby="faq-title">
-  <div><p class="eyebrow">A FEW THINGS TO KNOW</p><h2 id="faq-title">关于下一步。</h2></div>
-  <div>{siteConfig.faq.map(faq => <details><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}</p></details>)}</div>
+  <div><p class="eyebrow">A FEW THINGS TO KNOW</p><h2 id="faq-title">{copy.faq.title}</h2></div>
+  <div>{copy.faq.items.map(faq => <details><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}</p></details>)}</div>
 </section>

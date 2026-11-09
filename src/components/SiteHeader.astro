@@ -1,20 +1,45 @@
 ---
 import HorizonBrand from './HorizonBrand.astro';
-import { siteConfig } from '../config';
+import { getCopy } from '../i18n/copy';
+import { localeFromPath, localizedPath } from '../i18n/routing';
 const path = Astro.url.pathname;
-const isCurrent = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+const locale = localeFromPath(path);
+const copy = getCopy(locale);
+const navigation = ['/', '/services/', '/about/'].map((href, i) => ({ title: copy.nav[i], href: localizedPath(href, locale) }));
+const currentPath = localizedPath(path, locale);
 ---
 <header class="site-header">
   <HorizonBrand />
-  <nav class="desktop-nav" aria-label="主导航">
-    {siteConfig.nav.map(item => <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.title}</a>)}
+  <nav class="desktop-nav" aria-label={copy.ui.mainNav}>
+    {navigation.map(item => <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.title}</a>)}
   </nav>
-  <a class="header-contact" href="/contact/">聊聊你的想法 <span aria-hidden="true">↗</span></a>
-  <details class="mobile-navigation">
-    <summary aria-label="展开网站导航"><span></span><span></span></summary>
-    <nav aria-label="移动端主导航">
-      {siteConfig.nav.map(item => <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.title}<span aria-hidden="true">↗</span></a>)}
-      <a href="/contact/" aria-current={path.startsWith('/contact/') ? 'page' : undefined}>联系我们<span aria-hidden="true">↗</span></a>
+  <div class="header-actions">
+    <a class="header-contact" href={localizedPath('/contact/', locale)}>{copy.ui.talk} <span aria-hidden="true">↗</span></a>
+    <nav class="language-switch" aria-label={copy.ui.languages}>
+      <a href={localizedPath(path, 'en')} lang="en" hreflang="en" data-set-language="en" aria-current={locale === 'en' ? 'true' : undefined} aria-label="English">EN</a>
+      <span aria-hidden="true">/</span>
+      <a href={localizedPath(path, 'zh')} lang="zh-CN" hreflang="zh-CN" data-set-language="zh" aria-current={locale === 'zh' ? 'true' : undefined} aria-label="简体中文">中文</a>
     </nav>
-  </details>
+    <details class="mobile-navigation">
+      <summary aria-label={copy.ui.menu}><span></span><span></span></summary>
+      <nav aria-label={copy.ui.mobileNav}>
+        {navigation.map(item => <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.title}<span aria-hidden="true">↗</span></a>)}
+        <a href={localizedPath('/contact/', locale)} aria-current={currentPath === localizedPath('/contact/', locale) ? 'page' : undefined}>{copy.ui.contact}<span aria-hidden="true">↗</span></a>
+      </nav>
+    </details>
+  </div>
 </header>
+<script>
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-set-language]')) {
+    link.addEventListener('click', () => {
+      const locale = link.dataset.setLanguage;
+      if (locale !== 'en' && locale !== 'zh') return;
+      try { localStorage.setItem(document.documentElement.dataset.languageStorageKey!, locale); } catch { /* Explicit locale URLs still work without storage. */ }
+      const path = location.pathname.replace(/^\/(en|zh)(?=\/|$)/, '') || '/';
+      link.href = `/${locale}${path}${location.search}${location.hash}`;
+    });
+  }
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') document.querySelector<HTMLDetailsElement>('.mobile-navigation')?.removeAttribute('open');
+  });
+</script>

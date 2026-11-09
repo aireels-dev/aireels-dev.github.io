@@ -9,7 +9,7 @@ export default defineConfig({
   site: 'https://aireelstech.com',
   integrations: [
     tailwind(),
-    sitemap({ filter: (page) => !page.includes('/concepts/') && !page.includes('/aireels-web/') }),
+    sitemap({ filter: (page) => /^\/(en|zh)\//.test(new URL(page).pathname) && !page.endsWith('/404/') }),
     mdx()
   ],
   build: {

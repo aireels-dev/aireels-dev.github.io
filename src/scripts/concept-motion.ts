@@ -169,12 +169,12 @@ export function initConceptMotion() {
     if (!ctx || !w || !h) return;
     ctx.clearRect(0, 0, w, h);
     const mobile = !compact && w <= 760;
-    const cx = w * (compact ? 0.55 : mobile ? 0.61 : 0.7);
-    const cy = h * (compact ? 0.4 : mobile ? 0.7 : 0.46);
+    const cx = w * (compact ? 0.55 : mobile ? 0.5 : 0.7);
+    const cy = h * (compact ? 0.4 : mobile ? 0.5 : 0.46);
     const radius = compact
       ? w * 0.315
       : mobile
-        ? Math.min(w * 0.305, 175)
+        ? Math.min(w * 0.34, 175)
         : Math.min(w * 0.21, 325);
     const bounds = surface.canvas.getBoundingClientRect();
     const localMouseX = mouseX - bounds.left;
@@ -362,10 +362,10 @@ export function initConceptMotion() {
     if (toggle) {
       toggle.disabled = reduced.matches;
       toggle.textContent = reduced.matches
-        ? "已减少动效"
+        ? toggle.dataset.reducedLabel || "Reduced motion"
         : paused
-          ? "开启动效"
-          : "暂停动效";
+          ? toggle.dataset.resumeLabel || "Resume motion"
+          : toggle.dataset.pauseLabel || "Pause motion";
     }
     if (paused) {
       cancelAnimationFrame(frame);

@@ -1,7 +1,12 @@
+---
+import { getCopy } from '../i18n/copy';
+import { localeFromPath, localizedPath } from '../i18n/routing';
+const locale = localeFromPath(Astro.url.pathname);
+const copy = getCopy(locale);
+---
 <section class="contact-section" id="contact" aria-labelledby="contact-title">
-  <div class="contact-glow" aria-hidden="true"></div>
-  <p class="eyebrow" data-reveal>YOUR NEXT CHAPTER STARTS HERE.</p>
-  <h2 id="contact-title" data-reveal>下一种可能，<br />从你开始。</h2>
-  <a class="contact-mail" href="/contact/" data-magnetic>聊聊你的想法 <span aria-hidden="true">↗</span></a>
-  <p><a href="mailto:dev@aireels.top">dev@aireels.top</a> <span>/</span> 郑州 · 灵映科技</p>
+  <div class="contact-glow" aria-hidden="true"></div><p class="eyebrow" data-reveal>YOUR NEXT CHAPTER STARTS HERE.</p>
+  <h2 id="contact-title" data-reveal>{copy.cta.title[0]}<br />{copy.cta.title[1]}</h2>
+  <a class="contact-mail" href={localizedPath('/contact/', locale)} data-magnetic>{copy.ui.talk} <span aria-hidden="true">↗</span></a>
+  <p><a href="mailto:dev@aireels.top">dev@aireels.top</a> <span>/</span> {copy.cta.brand}</p>
 </section>

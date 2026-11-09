@@ -2,29 +2,45 @@
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { siteConfig } from '../config';
+import { getCopy } from '../i18n/copy';
+import { localeFromPath, localizedPath } from '../i18n/routing';
 import '../styles/concepts.css';
 import '../styles/horizon.css';
 import '../styles/site.css';
-interface Props { title?: string; description?: string; noindex?: boolean; canonicalPath?: string; }
-const { title, description = siteConfig.description, noindex = false, canonicalPath = Astro.url.pathname } = Astro.props;
-const pageTitle = title ? `${title} — ${siteConfig.title}` : `${siteConfig.title} AIReels — 让智能，引力全开。`;
-const canonical = new URL(canonicalPath, siteConfig.url).href;
+interface Props { title?: string; description?: string; noindex?: boolean; languageEntry?: boolean; }
+const locale = localeFromPath(Astro.url.pathname);
+const copy = getCopy(locale);
+const { title = copy.meta.home.title, description = copy.meta.home.description, noindex = false, languageEntry = false } = Astro.props;
+const pageTitle = `${title} — ${copy.brand}`;
+const canonical = new URL(localizedPath(Astro.url.pathname, locale), siteConfig.url).href;
 ---
 <!doctype html>
-<html lang="zh-CN">
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'} data-language={locale} data-language-storage-key="aireels.language.v1">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline data-language-entry={String(languageEntry)}>
+      (() => {
+        if (document.currentScript.dataset.languageEntry !== 'true' || /^\/(en|zh)(?:\/|$)/.test(location.pathname)) return;
+        let preferred;
+        try { preferred = localStorage.getItem(document.documentElement.dataset.languageStorageKey); } catch {}
+        const supported = (navigator.languages?.length ? navigator.languages : [navigator.language]).map(value => String(value).toLowerCase().split(/[-_]/)[0]);
+        const locale = preferred === 'en' || preferred === 'zh' ? preferred : supported.find(value => value === 'en' || value === 'zh') || 'en';
+        location.replace(`/${locale}${location.pathname}${location.search}${location.hash}`);
+      })();
+    </script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={siteConfig.author} />
     <meta name="theme-color" content="#090b0e" />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
+    {!noindex && <><link rel="alternate" hreflang="en" href={new URL(localizedPath(Astro.url.pathname, 'en'), siteConfig.url).href} /><link rel="alternate" hreflang="zh-CN" href={new URL(localizedPath(Astro.url.pathname, 'zh'), siteConfig.url).href} /><link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|zh)(?=\/|$)/, '') || '/', siteConfig.url).href} /></>}
     <link rel="icon" type="image/png" href={siteConfig.logo} />
     <link rel="apple-touch-icon" href={siteConfig.logo} />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:locale:alternate" content={locale === 'zh' ? 'en_US' : 'zh_CN'} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -38,7 +54,7 @@ const canonical = new URL(canonicalPath, siteConfig.url).href;
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body class="concept-site horizon production-site" data-concept="horizon" id="top">
-    <a href="#main" class="skip-link">跳转到主要内容</a>
+    <a href="#main" class="skip-link">{copy.ui.skip}</a>
     <SiteHeader />
     <main id="main"><slot /></main>
     <SiteFooter />

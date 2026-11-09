@@ -1,17 +1,18 @@
 ---
 import HorizonBrand from './HorizonBrand.astro';
 import { siteConfig } from '../config';
+import { getCopy } from '../i18n/copy';
+import { localeFromPath, localizedPath } from '../i18n/routing';
+const locale = localeFromPath(Astro.url.pathname);
+const copy = getCopy(locale);
 ---
 <footer class="concept-footer site-footer">
-  <div class="horizon-footer-intro">
-    <HorizonBrand footer />
-    <p>让智能成为业务的引力。<br /><span>From possibility to everyday impact.</span></p>
-  </div>
-  <nav class="footer-navigation" aria-label="页脚导航">
-    <div><span class="eyebrow">EXPLORE / 探索</span>{siteConfig.nav.map(item => <a href={item.href}>{item.title}</a>)}</div>
-    <div><span class="eyebrow">LET’S TALK / 联系</span><a href="mailto:dev@aireels.top">dev@aireels.top ↗</a><a href="/contact/">联系方式与咨询 ↗</a></div>
-    <p>立足郑州，连接智能与业务。<br /><span>为中小企业和个人创业者而构建。</span></p>
+  <div class="horizon-footer-intro"><HorizonBrand footer /><p>{copy.footer.tagline}<br /><span>{copy.footer.secondary}</span></p></div>
+  <nav class="footer-navigation" aria-label={copy.ui.footerNav}>
+    <div><span class="eyebrow">{locale === 'zh' ? `EXPLORE / ${copy.footer.links}` : copy.footer.links.toUpperCase()}</span>{['/', '/services/', '/about/'].map((href, i) => <a href={localizedPath(href, locale)}>{copy.nav[i]}</a>)}</div>
+    <div><span class="eyebrow">LET’S TALK</span><a href="mailto:dev@aireels.top">dev@aireels.top ↗</a><a href={localizedPath('/contact/', locale)}>{copy.footer.contact} ↗</a></div>
+    <p>{copy.footer.description[0]}<br /><span>{copy.footer.description[1]}</span></p>
   </nav>
-  <a class="footer-wordmark" href="/" aria-label="AIReels 返回首页">AIREELS<span>灵映科技</span></a>
-  <div class="footer-bottom"><span>© {new Date().getFullYear()} 郑州灵映科技有限公司</span><a href="/privacy/">隐私政策 ↗</a><button class="motion-toggle" type="button" aria-pressed="false">暂停动效</button><a href="#top">返回顶部 ↑</a></div>
+  <a class="footer-wordmark" href={localizedPath('/', locale)} aria-label={`AIReels ${copy.ui.home}`}>AIREELS<span>{copy.brand}</span></a>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} {siteConfig.author}</span><a href={localizedPath('/privacy/', locale)}>{copy.ui.privacy} ↗</a><button class="motion-toggle" type="button" aria-pressed="false" data-pause-label={copy.ui.pause} data-resume-label={copy.ui.resume} data-reduced-label={copy.ui.reduced}>{copy.ui.pause}</button><a href="#top">{copy.ui.top} ↑</a></div>
 </footer>

@@ -1,0 +1,13 @@
+---
+import SitePage from '../../components/SitePage.astro';
+import { locales, pages, type Page } from '../../i18n/routing';
+export function getStaticPaths() {
+  return locales.flatMap(lang => pages.map(page => ({
+    params: { lang, page: page === 'home' ? undefined : page },
+    props: { page },
+  })));
+}
+interface Props { page: Page; }
+const { page } = Astro.props;
+---
+<SitePage page={page} />
