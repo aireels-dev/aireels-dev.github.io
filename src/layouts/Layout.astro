@@ -31,7 +31,7 @@ const canonical = new URL(localizedPath(Astro.url.pathname, locale), siteConfig.
     </script>
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta name="author" content={siteConfig.author} />
+    <meta name="author" content={copy.company.name} />
     <meta name="theme-color" content="#090b0e" />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />

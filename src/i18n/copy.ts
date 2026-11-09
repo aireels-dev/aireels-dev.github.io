@@ -379,7 +379,7 @@ const en = {
     companyInfo: "COMPANY INFORMATION",
     infoTitle: ["Built around people.", "Connected through technology."],
     registeredOffice: "Registered office",
-    companyLabel: "Legal entity",
+    companyLabel: "Company name",
     hoursLabel: "Working hours",
     artSignature: "HUMAN × INTELLIGENCE",
   },
@@ -413,6 +413,7 @@ const en = {
     ],
   },
   company: {
+    name: "Zhengzhou AIReels Technology Co., Ltd.",
     registeredOffice: "Huiji District, Zhengzhou, China",
     hours: "Mon–Fri, 09:00–18:00 (UTC+8)",
   },
@@ -766,6 +767,7 @@ const zh: typeof en = {
     emailFields: ["业务背景", "目前的问题", "希望实现的目标", "方便联系的方式"],
   },
   company: {
+    name: siteConfig.author,
     registeredOffice: "郑州市惠济区",
     hours: "周一至周五 9:00–18:00（UTC+8）",
   },

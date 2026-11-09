@@ -16,6 +16,7 @@ assert.ok(
 );
 const paths = ["", "services/", "about/", "contact/", "privacy/", "404/"];
 const legalName = "郑州灵映科技有限公司";
+const englishCompanyName = "Zhengzhou AIReels Technology Co., Ltd.";
 
 function negotiate({
   languages = [],
@@ -100,6 +101,11 @@ test("both languages contain complete pages, localized navigation and alternate-
         1,
         `${locale}/${path} must have one main heading`,
       );
+      const expectedName = locale === "en" ? englishCompanyName : legalName;
+      const otherName = locale === "en" ? legalName : englishCompanyName;
+      assert.ok(html.includes(`name="author" content="${expectedName}"`));
+      assert.ok(html.includes(`© ${new Date().getFullYear()} ${expectedName}`));
+      assert.ok(!html.includes(otherName), `Wrong-language company name in ${locale}/${path}`);
       const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(
         (match) => match[1],
       );
@@ -139,6 +145,7 @@ test("geographic wording is limited to the legal name and registered office", ()
       );
       const remaining = html
         .replaceAll(legalName, "")
+        .replaceAll(englishCompanyName, "")
         .replaceAll("郑州市惠济区", "")
         .replaceAll("Huiji District, Zhengzhou, China", "");
       assert.doesNotMatch(
